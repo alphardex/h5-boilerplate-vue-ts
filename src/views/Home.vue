@@ -2,7 +2,6 @@
   <div class="home min-h-screen">
     <div
       class="absolute bottom-2 h-center text-grey text-sm whitespace-no-wrap"
-      @click="dialog.openShareTip"
     >
       常熟零距离技术支持
     </div>
