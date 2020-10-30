@@ -15,14 +15,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed, onMounted, reactive, toRefs } from "vue";
 import useDialog from "@/hooks/useDialog";
+import useWx from "@/hooks/useWx";
+import { Info } from "@/types";
+import { dummyInfo } from "@/data/fake";
+import { getInfo } from "@/apis";
+
+interface State {
+  info: Info;
+}
 
 export default defineComponent({
   name: "Home",
   setup() {
+    const isDevMode = computed(() => process.env.NODE_ENV === "development");
     const dialog = useDialog();
-    return { dialog };
+    const wx = useWx();
+    const state = reactive<State>({
+      info: {}
+    });
+
+    onMounted(async () => {
+      if (isDevMode.value) {
+        state.info = { ...dummyInfo };
+      } else {
+        state.info = await getInfo();
+      }
+      await wx.wxShare(state.info);
+    });
+    return { isDevMode, dialog, wx, ...toRefs(state) };
   }
 });
 </script>

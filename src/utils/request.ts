@@ -4,14 +4,14 @@ import Alert from "@/utils/alert";
 const service = axios.create();
 
 service.interceptors.response.use(
-  response => {
+  (response) => {
     if (response.status === 200) {
       return Promise.resolve(response);
     } else {
       return Promise.reject(response);
     }
   },
-  error => {
+  (error) => {
     return Promise.reject(error.response);
   }
 );
@@ -20,7 +20,7 @@ const get = (url: string, params = {}): Promise<any> => {
   return new Promise((resolve, reject) => {
     service
       .get(url, { params })
-      .then(res => {
+      .then((res) => {
         const data = res.data;
         if (parseInt(data.code) === 200) {
           resolve(data.data);
@@ -29,7 +29,7 @@ const get = (url: string, params = {}): Promise<any> => {
           resolve(data);
         }
       })
-      .catch(res => {
+      .catch((res) => {
         reject(res.data);
       });
   });
@@ -39,7 +39,7 @@ const post = (url: string, data: FormData): Promise<any> => {
   return new Promise((resolve, reject) => {
     service
       .post(url, data)
-      .then(res => {
+      .then((res) => {
         const data = res.data;
         if (parseInt(data.code) === 200) {
           resolve(data);
@@ -48,7 +48,7 @@ const post = (url: string, data: FormData): Promise<any> => {
           resolve(data);
         }
       })
-      .catch(res => {
+      .catch((res) => {
         reject(res.data);
       });
   });

@@ -1,16 +1,19 @@
 import { get } from "@/utils/request";
-import { API } from "@/types";
+import { WxShare, Info } from "@/types";
 
 const BASEPATH = "main.php?mod=";
 
 const API = {
+  wxShare: "wxShareConfigParameters",
   info: "info",
-} as API;
+} as Record<string, string>;
 
 Object.entries(API).forEach(([key, value]) => {
   API[key] = `${BASEPATH}${value}`;
 });
 
-const getInfo = (): Promise<Record<string, any>> => get(API.info);
+const getWxShare = (): Promise<WxShare> => get(API.wxShare);
 
-export { getInfo };
+const getInfo = (): Promise<Info> => get(API.info);
+
+export { getWxShare, getInfo };
