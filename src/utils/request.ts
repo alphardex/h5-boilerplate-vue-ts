@@ -35,10 +35,14 @@ const get = (url: string, params = {}): Promise<any> => {
   });
 };
 
-const post = (url: string, data: FormData | null = null): Promise<any> => {
+const post = (url: string, data = {}): Promise<any> => {
+  const fd = new FormData();
+  Object.entries(data).forEach(([key, value]) => {
+    fd.append(key, value as string | Blob);
+  });
   return new Promise((resolve, reject) => {
     service
-      .post(url, data ? data : {})
+      .post(url, fd)
       .then((res) => {
         const data = res.data;
         if (parseInt(data.code) === 200) {
