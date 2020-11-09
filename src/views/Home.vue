@@ -8,6 +8,7 @@
     <teleport to="#dialogs">
       <div
         class="backdrop"
+        :class="{ 'pointer-events-none': !dialog.isBackdropClosable.value }"
         v-if="dialog.showBackdrop.value"
         @click="dialog.closeAllDialog"
       ></div>

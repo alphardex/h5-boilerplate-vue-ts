@@ -3,6 +3,7 @@ import ky from "kyouka";
 
 export default () => {
   const showBackdrop = ref(false);
+  const isBackdropClosable = ref(true);
   const showShareTip = ref(false);
 
   const closeAllDialog = () => {
@@ -10,8 +11,9 @@ export default () => {
     showShareTip.value = false;
   };
 
-  const openDialog = (fn: Function) => () => {
+  const openDialog = (fn: Function, closable = true) => () => {
     showBackdrop.value = true;
+    isBackdropClosable.value = closable;
     fn();
   };
 
@@ -23,8 +25,9 @@ export default () => {
 
   return {
     showBackdrop,
-    showShareTip,
+    isBackdropClosable,
     closeAllDialog,
+    showShareTip,
     openShareTip,
   };
 };
