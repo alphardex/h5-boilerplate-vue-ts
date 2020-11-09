@@ -5,12 +5,16 @@
     >
       常熟零距离技术支持
     </div>
-    <div
-      class="backdrop"
-      v-if="dialog.showBackdrop.value"
-      @click="dialog.closeAllDialog"
-    ></div>
-    <div class="share-tip" v-if="dialog.showShareTip.value"></div>
+    <teleport to="#dialogs">
+      <div
+        class="backdrop"
+        v-if="dialog.showBackdrop.value"
+        @click="dialog.closeAllDialog"
+      ></div>
+    </teleport>
+    <teleport to="#dialogs">
+      <div class="share-tip" v-if="dialog.showShareTip.value"></div>
+    </teleport>
   </div>
 </template>
 

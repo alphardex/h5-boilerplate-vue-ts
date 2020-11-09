@@ -1,4 +1,5 @@
 import { ref } from "vue";
+import ky from "kyouka";
 
 export default () => {
   const showBackdrop = ref(false);
@@ -9,10 +10,16 @@ export default () => {
     showShareTip.value = false;
   };
 
-  const openShareTip = () => {
+  const openDialog = (fn: Function) => () => {
     showBackdrop.value = true;
-    showShareTip.value = true;
+    fn();
   };
+
+  const openDialogCurry = ky.curry(openDialog);
+
+  const openShareTip = openDialogCurry(() => {
+    showShareTip.value = true;
+  });
 
   return {
     showBackdrop,

@@ -11,7 +11,7 @@
     "@alphardex/aqua.sp": "^1.1.7",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
-    "kyouka": "^1.1.4",
+    "kyouka": "^1.1.6",
     "sweetalert2": "^10.3.6",
     "vconsole": "^3.3.4",
     "vue": "^3.0.2",
