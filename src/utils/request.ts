@@ -35,10 +35,10 @@ const get = (url: string, params = {}): Promise<any> => {
   });
 };
 
-const post = (url: string, data: FormData): Promise<any> => {
+const post = (url: string, data: FormData | null = null): Promise<any> => {
   return new Promise((resolve, reject) => {
     service
-      .post(url, data)
+      .post(url, data ? data : {})
       .then((res) => {
         const data = res.data;
         if (parseInt(data.code) === 200) {
