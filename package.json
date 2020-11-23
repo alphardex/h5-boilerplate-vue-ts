@@ -10,8 +10,11 @@
   "dependencies": {
     "@alphardex/aqua.sp": "^1.1.8",
     "axios": "^0.20.0",
+    "blueimp-md5": "^2.18.0",
     "core-js": "^3.6.5",
+    "jsencrypt": "^3.0.0-rc.1",
     "kyouka": "^1.1.7",
+    "qs": "^6.9.4",
     "sweetalert2": "^10.3.6",
     "vconsole": "^3.3.4",
     "vue": "^3.0.2",
@@ -19,6 +22,7 @@
     "weixin-js-sdk": "^1.6.0"
   },
   "devDependencies": {
+    "@types/blueimp-md5": "^2.7.0",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -52,7 +56,12 @@
     "parserOptions": {
       "ecmaVersion": 2020
     },
-    "rules": {}
+    "rules": {
+      "@typescript-eslint/ban-ts-ignore": "off",
+      "@typescript-eslint/camelcase": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-explicit-any": "off"
+    }
   },
   "browserslist": [
     "> 1%",

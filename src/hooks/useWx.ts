@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 // @ts-ignore
 import wx from "weixin-js-sdk";
 import { Info } from "@/types";

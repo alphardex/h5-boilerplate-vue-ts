@@ -4,13 +4,17 @@
 
 <script lang="ts">
 import "@alphardex/aqua.sp/dist/aqua.sp.min.css";
+import { defineComponent } from "vue";
 import VConsole from "vconsole";
 
-export default {
-  mounted() {
+export default defineComponent({
+  setup() {
     const vconsole = new VConsole();
-  }
-};
+    return {
+      vconsole,
+    };
+  },
+});
 </script>
 
 <style lang="scss">
@@ -27,10 +31,16 @@ body {
   --grey-color: #6a6a6a;
 }
 
+// reset
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 // sweetalert2
 
 .alert-title {
-  font-size: 4vw !important;
+  font-size: 3.8vw !important;
   font-weight: normal !important;
   white-space: nowrap !important;
 }
@@ -40,10 +50,6 @@ body {
 }
 
 // utils
-
-.bottom-2 {
-  bottom: 2vw;
-}
 
 .text-grey {
   color: var(--grey-color);

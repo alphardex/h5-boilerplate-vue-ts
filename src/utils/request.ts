@@ -1,7 +1,43 @@
 import axios from "axios";
 import Alert from "@/utils/alert";
+import { activityID, publicKey, useEncrypt } from "@/data/config";
+import qs from "qs";
+import md5 from "blueimp-md5";
+// @ts-ignore
+import JSEncrypt from "jsencrypt";
 
 const service = axios.create();
+
+const rsaEncrypt = (rawData: any) => {
+  const encryptor = new JSEncrypt();
+  encryptor.setPublicKey(publicKey);
+  const rsaData = encryptor.encrypt(JSON.stringify(rawData));
+  return rsaData;
+};
+
+const md5Encrypt = (rawData: any) => {
+  const query = qs.stringify(rawData, { encode: false });
+  const md5Data = md5(query);
+  return md5Data;
+};
+
+if (useEncrypt) {
+  service.interceptors.request.use((config) => {
+    if (config.method === "post") {
+      const entries = [...config.data.entries()];
+      entries.sort();
+      const rsaRawData = Object.fromEntries(entries);
+      const md5RawData = { ...rsaRawData, key: activityID };
+      const md5Data = md5Encrypt(md5RawData);
+      const rsaData = rsaEncrypt(rsaRawData);
+      config.headers.Authorization = md5Data;
+      const fd = new FormData();
+      fd.append("data", rsaData);
+      config.data = fd;
+    }
+    return config;
+  });
+}
 
 service.interceptors.response.use(
   (response) => {

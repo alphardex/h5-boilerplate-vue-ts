@@ -1,5 +1,4 @@
 declare module "@alphardex/aqua.sp/dist/aqua.sp.min.css";
-declare module "weixin-js-sdk";
 
 export interface NavItem {
   to: Path;
@@ -27,6 +26,7 @@ export interface Info {
   description?: string;
   keywords?: string;
   share_info?: ShareInfo;
+  act_rule?: string;
 }
 
 export interface ShareInfo {
@@ -40,6 +40,6 @@ export interface ShareInfo {
 }
 
 export interface PostReturn {
-  code: string;
+  code: number;
   msg: string;
 }
