@@ -13,7 +13,7 @@
     "blueimp-md5": "^2.18.0",
     "core-js": "^3.6.5",
     "jsencrypt": "^3.0.0-rc.1",
-    "kyouka": "^1.1.7",
+    "kyouka": "^1.1.9",
     "qs": "^6.9.4",
     "sweetalert2": "^10.3.6",
     "vconsole": "^3.3.4",
