@@ -38,7 +38,7 @@ export default defineComponent({
     const dialog = useDialog();
     const wx = useWx();
     const state = reactive<State>({
-      info: {}
+      info: {},
     });
 
     onMounted(async () => {
@@ -50,7 +50,7 @@ export default defineComponent({
       await wx.wxShare(state.info);
     });
     return { isDevMode, dialog, wx, ...toRefs(state) };
-  }
+  },
 });
 </script>
 

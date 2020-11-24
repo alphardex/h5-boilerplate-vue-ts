@@ -37,6 +37,16 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+* {
+  border-width: 0;
+}
+
+input,
+select {
+  outline: none !important;
+  appearance: none !important;
+}
+
 // sweetalert2
 
 .alert-title {
