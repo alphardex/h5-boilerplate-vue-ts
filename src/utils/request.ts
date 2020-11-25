@@ -21,10 +21,11 @@ const md5Encrypt = (rawData: any) => {
   return md5Data;
 };
 
-if (useEncrypt) {
-  service.interceptors.request.use((config) => {
-    if (config.method === "post") {
-      const entries = [...config.data.entries()];
+service.interceptors.request.use((config) => {
+  if (config.method === "post") {
+    const data = config.data;
+    if (useEncrypt) {
+      const entries = Object.entries(data);
       entries.sort();
       const rsaRawData = Object.fromEntries(entries);
       const md5RawData = { ...rsaRawData, key: activityID };
@@ -34,10 +35,16 @@ if (useEncrypt) {
       const fd = new FormData();
       fd.append("data", rsaData);
       config.data = fd;
+    } else {
+      const fd = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        fd.append(key, value as string | Blob);
+      });
+      config.data = fd;
     }
-    return config;
-  });
-}
+  }
+  return config;
+});
 
 service.interceptors.response.use(
   (response) => {
@@ -72,16 +79,12 @@ const get = (url: string, params = {}): Promise<any> => {
 };
 
 const post = (url: string, data = {}): Promise<any> => {
-  const fd = new FormData();
-  Object.entries(data).forEach(([key, value]) => {
-    fd.append(key, value as string | Blob);
-  });
   return new Promise((resolve, reject) => {
     service
-      .post(url, fd)
+      .post(url, data)
       .then((res) => {
         const data = res.data;
-        if (parseInt(data.code) === 200) {
+        if (data.code === 200) {
           resolve(data);
         } else {
           Alert.fire(data.msg);
