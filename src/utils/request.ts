@@ -1,6 +1,6 @@
 import axios from "axios";
 import Alert from "@/utils/alert";
-import { activityID, publicKey, useEncrypt } from "@/data/config";
+import { activityID, publicKey, useEncrypt } from "@/consts/index";
 import qs from "qs";
 import md5 from "blueimp-md5";
 // @ts-ignore
@@ -97,4 +97,4 @@ const post = (url: string, data = {}): Promise<any> => {
   });
 };
 
-export { get, post };
+export { get, post, service };
