@@ -22,7 +22,6 @@ export interface WxShare {
 
 export interface Info {
   title?: string;
-  rules?: string;
   description?: string;
   keywords?: string;
   share_info?: ShareInfo;
