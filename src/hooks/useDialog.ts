@@ -1,5 +1,4 @@
 import { ref } from "vue";
-import ky from "kyouka";
 
 export default () => {
   const showBackdrop = ref(false);
