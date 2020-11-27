@@ -1,4 +1,5 @@
 import { API } from "@/consts";
+import { Info } from "@/types";
 import { service } from "@/utils/request";
 import MockAdapter from "axios-mock-adapter";
 import Mock from "mockjs";
@@ -17,8 +18,8 @@ class MockServer {
         description: Mock.Random.sentence(),
         keywords: Mock.Random.word(),
         shareInfo: {},
-        rules: Mock.Random.paragraph(),
-      },
+        act_rule: Mock.Random.paragraph(),
+      } as Info,
     });
   }
 }
