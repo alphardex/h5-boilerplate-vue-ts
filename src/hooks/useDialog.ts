@@ -17,9 +17,7 @@ export default () => {
     fn();
   };
 
-  const openDialogCurry = ky.curry(openDialog);
-
-  const openShareTip = openDialogCurry(() => {
+  const openShareTip = openDialog(() => {
     showShareTip.value = true;
   });
 
