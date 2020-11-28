@@ -37,6 +37,8 @@ body {
 // reset
 
 a {
+  color: currentColor;
+  text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
 
