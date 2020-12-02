@@ -65,7 +65,7 @@ const get = (url: string, params = {}): Promise<any> => {
       .get(url, { params })
       .then((res) => {
         const data = res.data;
-        if (parseInt(data.code) === 200) {
+        if (Number(data.code) === 200) {
           resolve(data.data);
         } else {
           Alert.fire(data.msg);
@@ -84,7 +84,7 @@ const post = (url: string, data = {}): Promise<any> => {
       .post(url, data)
       .then((res) => {
         const data = res.data;
-        if (data.code === 200) {
+        if (Number(data.code) === 200) {
           resolve(data);
         } else {
           Alert.fire(data.msg);
