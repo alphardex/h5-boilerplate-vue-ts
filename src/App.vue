@@ -57,7 +57,6 @@ select {
 .alert-title {
   font-size: 3.8vw !important;
   font-weight: normal !important;
-  white-space: nowrap !important;
 }
 
 .alert-popup {
