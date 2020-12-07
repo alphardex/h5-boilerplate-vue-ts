@@ -11,7 +11,7 @@ export default () => {
     document.querySelector("meta[name=keywords]")!.setAttribute("content", info.keywords || "");
     const shareInfo = info.share_info;
     const deviceType = ky.detectDeviceType();
-    if (shareInfo && deviceType === "Mobile") {
+    if (deviceType === "Mobile" && shareInfo) {
       shareInfo.callback = () => {
         location.reload();
       };
