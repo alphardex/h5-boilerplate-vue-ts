@@ -27,7 +27,7 @@ import { Info } from "@/types";
 import { getInfo } from "@/apis";
 
 interface State {
-  info: Info;
+  info: Info | null;
 }
 
 export default defineComponent({
@@ -36,7 +36,7 @@ export default defineComponent({
     const dialog = useDialog();
     const wx = useWx();
     const state = reactive<State>({
-      info: {},
+      info: null,
     });
     onMounted(async () => {
       state.info = await getInfo();

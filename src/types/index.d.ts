@@ -21,11 +21,11 @@ export interface WxShare {
 }
 
 export interface Info {
-  title?: string;
-  description?: string;
-  keywords?: string;
-  share_info?: ShareInfo;
-  act_rule?: string;
+  title: string;
+  description: string;
+  keywords: string;
+  share_info: ShareInfo;
+  act_rule: string;
 }
 
 export interface ShareInfo {
