@@ -29,13 +29,13 @@ export interface Info {
 }
 
 export interface ShareInfo {
-  mid: string;
+  mid?: string;
   title: string;
   desc: string;
   img: string;
   url: string;
-  callback: Function;
-  apilist: string[];
+  callback?: Function;
+  apilist?: string[];
 }
 
 export interface PostReturn {

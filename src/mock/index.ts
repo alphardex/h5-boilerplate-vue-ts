@@ -17,7 +17,12 @@ class MockServer {
         title: Mock.Random.word(),
         description: Mock.Random.sentence(),
         keywords: Mock.Random.word(),
-        shareInfo: {},
+        share_info: {
+          title: Mock.Random.word(),
+          desc: Mock.Random.sentence(),
+          img: Mock.Random.image(),
+          url: Mock.Random.url(),
+        },
         act_rule: Mock.Random.paragraph(),
       } as Info,
     });
