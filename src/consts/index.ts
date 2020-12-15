@@ -2,7 +2,6 @@ import { NavItem } from "@/types";
 
 const activityID = "";
 const publicKey = ``;
-const useEncrypt = true;
 
 const isDevMode = process.env.NODE_ENV === "development";
 
@@ -19,4 +18,4 @@ Object.entries(API).forEach(([key, value]) => {
 
 const navItems: NavItem[] = [{ to: { name: "Home", query: { mod: "main" } }, text: "首页" }];
 
-export { activityID, publicKey, useEncrypt, isDevMode, API, navItems };
+export { activityID, publicKey, isDevMode, API, navItems };

@@ -1,6 +1,6 @@
 import axios from "axios";
 import Alert from "@/utils/alert";
-import { activityID, publicKey, useEncrypt } from "@/consts/index";
+import { activityID, publicKey } from "@/consts/index";
 import qs from "qs";
 import md5 from "blueimp-md5";
 // @ts-ignore
@@ -24,7 +24,8 @@ const md5Encrypt = (rawData: any) => {
 service.interceptors.request.use((config) => {
   if (config.method === "post") {
     const data = config.data;
-    if (useEncrypt) {
+    if (data.useEncrypt) {
+      delete data.useEncrypt;
       const entries = Object.entries(data);
       entries.sort();
       const rsaRawData = Object.fromEntries(entries);
@@ -78,7 +79,10 @@ const get = (url: string, params = {}): Promise<any> => {
   });
 };
 
-const post = (url: string, data = {}): Promise<any> => {
+const post = (url: string, data: Record<string, any> = {}, useEncrypt = false): Promise<any> => {
+  if (useEncrypt) {
+    data.useEncrypt = true;
+  }
   return new Promise((resolve, reject) => {
     service
       .post(url, data)
@@ -87,7 +91,9 @@ const post = (url: string, data = {}): Promise<any> => {
         if (Number(data.code) === 200) {
           resolve(data);
         } else {
-          Alert.fire(data.msg);
+          if (Number(data.code) !== 301) {
+            Alert.fire(data.msg);
+          }
           resolve(data);
         }
       })

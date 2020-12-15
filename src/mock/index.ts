@@ -11,6 +11,15 @@ class MockServer {
   }
   start() {
     const mock = this.mock;
+    mock.onGet(API.wxShare).reply(200, {
+      code: 200,
+      data: {
+        appid: "wxf9d0cf801b91d3ed",
+        noncestr: "c734d2a39e7a32a757e8083b00cb29ae",
+        signature: "96d834bd3c34a0693d7a7fafcaa88051f43392dc",
+        timestamp: "1608015196",
+      },
+    });
     mock.onGet(API.info).reply(200, {
       code: 200,
       data: {

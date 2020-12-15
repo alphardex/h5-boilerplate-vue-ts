@@ -5,7 +5,7 @@ import { getWxShare } from "@/apis";
 import ky from "kyouka";
 
 export default () => {
-  const wxShare = async (info: Info) => {
+  const wxShare = async (info: Info, shareUrl = "") => {
     document.title = info.title || "";
     document.querySelector("meta[name=description]")!.setAttribute("content", info.description || "");
     document.querySelector("meta[name=keywords]")!.setAttribute("content", info.keywords || "");
@@ -26,9 +26,10 @@ export default () => {
         jsApiList: shareInfo.apilist,
       });
       wx.ready(() => {
+        const link = shareUrl || shareInfo.url;
         wx.onMenuShareTimeline({
           title: shareInfo.title,
-          link: shareInfo.url,
+          link,
           imgUrl: shareInfo.img,
           success() {
             shareInfo.callback && shareInfo.callback();
@@ -40,7 +41,7 @@ export default () => {
         wx.onMenuShareAppMessage({
           title: shareInfo.title,
           desc: shareInfo.desc,
-          link: shareInfo.url,
+          link,
           imgUrl: shareInfo.img,
           type: "",
           dataUrl: "",
