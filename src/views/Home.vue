@@ -14,7 +14,7 @@
       ></div>
     </teleport>
     <teleport to="#dialogs">
-      <div class="share-tip" v-if="dialog.showShareTip.value"></div>
+      <div class="share-tip" v-show="dialog.showShareTip.value"></div>
     </teleport>
   </div>
 </template>
