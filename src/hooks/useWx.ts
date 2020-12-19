@@ -2,7 +2,7 @@
 import wx from "weixin-js-sdk";
 import { Info } from "@/types";
 import { getWxShare } from "@/apis";
-import ky from "kyouka";
+import { isMobile } from "@/consts";
 
 export default () => {
   const wxShare = async (info: Info, shareUrl = "") => {
@@ -10,8 +10,7 @@ export default () => {
     document.querySelector("meta[name=description]")!.setAttribute("content", info.description || "");
     document.querySelector("meta[name=keywords]")!.setAttribute("content", info.keywords || "");
     const shareInfo = info.share_info;
-    const deviceType = ky.detectDeviceType();
-    if (deviceType === "Mobile" && shareInfo) {
+    if (isMobile && shareInfo) {
       shareInfo.callback = () => {
         location.reload();
       };
