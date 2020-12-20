@@ -14,6 +14,7 @@
     "core-js": "^3.6.5",
     "jsencrypt": "^3.0.0-rc.1",
     "kyouka": "^1.2.1",
+    "lazyload": "^2.0.0-rc.2",
     "qs": "^6.9.4",
     "sweetalert2": "^10.3.6",
     "vconsole": "^3.3.4",
