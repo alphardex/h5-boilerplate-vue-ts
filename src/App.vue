@@ -65,7 +65,6 @@ body {
 // colors
 
 :root {
-  --grey-color: #6a6a6a;
 }
 
 // reset
@@ -98,10 +97,6 @@ select {
 }
 
 // utils
-
-.text-grey {
-  color: var(--grey-color);
-}
 
 // common
 
