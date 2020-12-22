@@ -13,6 +13,37 @@
 - utils: 工具，如提示、请求等
 - views: 视图
 
+## Debug API
+
+调试接口，直接复制接口数据
+
+```js
+const copyToClipboard = (str) => {
+  const el = document.createElement("textarea");
+  el.value = str;
+  el.setAttribute("readonly", "");
+  el.style.position = "absolute";
+  el.style.left = "-9999px";
+  document.body.appendChild(el);
+  const selected =
+    document.getSelection().rangeCount > 0
+      ? document.getSelection().getRangeAt(0)
+      : false;
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+  if (selected) {
+    document.getSelection().removeAllRanges();
+    document.getSelection().addRange(selected);
+  }
+};
+
+const fetchData = (url) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((res) => copyToClipboard(JSON.stringify(res.data)));
+```
+
 ## Project setup
 
 ```

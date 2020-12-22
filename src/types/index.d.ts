@@ -1,5 +1,7 @@
 declare module "@alphardex/aqua.sp/dist/aqua.sp.min.css";
 
+export type YesNo = "yes" | "no";
+
 export interface NavItem {
   to: Path;
   text: string;

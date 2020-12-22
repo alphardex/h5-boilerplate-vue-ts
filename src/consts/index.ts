@@ -18,6 +18,8 @@ Object.entries(API).forEach(([key, value]) => {
   (API as Record<string, string>)[key] = `${BASEPATH}${value}`;
 });
 
+console.log(API);
+
 const navItems: NavItem[] = [{ to: { name: "Home" }, text: "首页" }];
 
 export { activityID, publicKey, isDevMode, isMobile, API, navItems };
