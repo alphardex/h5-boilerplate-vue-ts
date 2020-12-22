@@ -18,7 +18,7 @@ Object.entries(API).forEach(([key, value]) => {
   (API as Record<string, string>)[key] = `${BASEPATH}${value}`;
 });
 
-console.log(API);
+console.log(JSON.stringify(API));
 
 const navItems: NavItem[] = [{ to: { name: "Home" }, text: "首页" }];
 
