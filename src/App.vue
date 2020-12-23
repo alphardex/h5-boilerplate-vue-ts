@@ -42,12 +42,33 @@ body {
   }
 }
 
-@mixin cover {
+@mixin cover($top: 0, $left: 0, $width: 100%, $height: 100%) {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+}
+
+@mixin inset($inset: 0) {
+  position: absolute;
+  top: $inset;
+  left: $inset;
+  right: $inset;
+  bottom: $inset;
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin abs-center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 // functions
