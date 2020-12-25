@@ -82,20 +82,6 @@ body {
   @return nth($list, random(length($list)));
 }
 
-// orientation
-
-@media screen and (orientation: portrait) {
-  .landscape {
-    display: none;
-  }
-}
-
-@media screen and (orientation: landscape) {
-  .portrait {
-    display: none;
-  }
-}
-
 // colors
 
 :root {
