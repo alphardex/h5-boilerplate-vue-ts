@@ -24,7 +24,6 @@ export default defineComponent({
 body {
   min-height: 100vh;
   margin: 0;
-  font-size: 4vw;
   background: white;
 }
 
@@ -83,6 +82,20 @@ body {
   @return nth($list, random(length($list)));
 }
 
+// orientation
+
+@media screen and (orientation: portrait) {
+  .landscape {
+    display: none;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .portrait {
+    display: none;
+  }
+}
+
 // colors
 
 :root {
@@ -109,12 +122,21 @@ select {
 // sweetalert2
 
 .alert-title {
-  font-size: 3.8vw !important;
   font-weight: normal !important;
 }
 
-.alert-popup {
-  max-width: 72vw !important;
+@include sp-layout {
+  body {
+    font-size: 4vw;
+  }
+
+  .alert-title {
+    font-size: 3.8vw !important;
+  }
+
+  .alert-popup {
+    max-width: 72vw !important;
+  }
 }
 
 // utils
@@ -144,5 +166,49 @@ select {
   height: 21vh;
   background: url("./assets/share-tip.png") 0 0 / contain no-repeat;
   animation: fade-in-bottom 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+// animations
+
+.fade-in {
+  animation: fade-in 0.6s forwards;
+}
+
+.heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
 }
 </style>
