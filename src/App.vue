@@ -171,6 +171,7 @@ select {
 // animations
 
 .fade-in {
+  opacity: 0;
   animation: fade-in 0.6s forwards;
 }
 
