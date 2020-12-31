@@ -134,6 +134,14 @@ select {
 
 // utils
 
+.form-check-inline {
+  align-items: center;
+}
+
+.form-group {
+  white-space: nowrap;
+}
+
 // common
 
 .music {
