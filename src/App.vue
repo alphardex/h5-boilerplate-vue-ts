@@ -65,7 +65,7 @@ body {
   align-items: center;
 }
 
-@mixin abs-center() {
+@mixin hv-center() {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -99,14 +99,13 @@ p {
 a {
   color: currentColor;
   text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
 * {
   border-width: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
-input,
 select {
   outline: none !important;
   appearance: none !important;
@@ -133,14 +132,6 @@ select {
 }
 
 // utils
-
-.form-check-inline {
-  align-items: center;
-}
-
-.form-group {
-  white-space: nowrap;
-}
 
 // common
 
@@ -194,57 +185,6 @@ select {
     clip-path: inset(0 50% 0 0);
     mask: linear-gradient(black, transparent);
     animation: spin 1s linear infinite;
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
-
-// animations
-
-.fade-in {
-  opacity: 0;
-  animation: fade-in 0.6s forwards;
-}
-
-.heartbeat {
-  animation: heartbeat 1.5s ease-in-out infinite both;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes heartbeat {
-  from {
-    transform: scale(1);
-    transform-origin: center center;
-    animation-timing-function: ease-out;
-  }
-  10% {
-    transform: scale(0.91);
-    animation-timing-function: ease-in;
-  }
-  17% {
-    transform: scale(0.98);
-    animation-timing-function: ease-out;
-  }
-  33% {
-    transform: scale(0.87);
-    animation-timing-function: ease-in;
-  }
-  45% {
-    transform: scale(1);
-    animation-timing-function: ease-out;
   }
 }
 </style>
