@@ -92,8 +92,9 @@ body {
 
 // reset
 
-p {
-  margin: 0;
+* {
+  border-width: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -101,14 +102,8 @@ a {
   text-decoration: none;
 }
 
-* {
-  border-width: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-
-select {
-  outline: none !important;
-  appearance: none !important;
+p {
+  margin: 0;
 }
 
 // sweetalert2
@@ -158,33 +153,5 @@ select {
   height: 21vh;
   background: url("./assets/share-tip.png") 0 0 / contain no-repeat;
   animation: fade-in-bottom 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-
-.loader {
-  --loader-width: 4em;
-  --loader-stroke-color: var(--primary-color);
-  --loader-stroke: 2px;
-  --loader-border: 2px;
-  --loader-border-color: var(--primary-color-transparent);
-
-  position: relative;
-  width: var(--loader-width);
-  height: var(--loader-width);
-  box-shadow: inset 0 0 0 var(--loader-border) var(--loader-border-color);
-  border-radius: 50%;
-
-  &::before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    box-shadow: inset 0 0 0 var(--loader-stroke) var(--loader-stroke-color);
-    clip-path: inset(0 50% 0 0);
-    mask: linear-gradient(black, transparent);
-    animation: spin 1s linear infinite;
-  }
 }
 </style>
