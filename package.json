@@ -12,6 +12,7 @@
     "axios": "^0.20.0",
     "blueimp-md5": "^2.18.0",
     "core-js": "^3.6.5",
+    "css.gg": "^2.0.0",
     "jsencrypt": "^3.0.0-rc.1",
     "kyouka": "^1.2.2",
     "lazyload": "^2.0.0-rc.2",
