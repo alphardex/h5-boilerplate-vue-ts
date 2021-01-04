@@ -79,27 +79,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.input-spinner {
-  --spinner-default-color: var(--primary-color);
-  --spinner-active-color: var(--primary-color);
-  --spinner-bg: white;
-
-  .form-control {
-    --input-padding: 1vw 3vw;
-
-    font-size: 5vw;
-    line-height: 1;
-    font-weight: bold;
-    color: var(--spinner-default-color);
-    background: var(--spinner-bg);
-  }
-
-  .btn {
-    --btn-padding: 2vw 4vw;
-
-    background: var(--spinner-bg);
-    border: none;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
