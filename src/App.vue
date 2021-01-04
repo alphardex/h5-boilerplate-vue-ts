@@ -87,7 +87,6 @@ body {
 // colors
 
 :root {
-  --primary-color-transparent: hsla(196, 78%, 61%, 0.1);
 }
 
 // reset
