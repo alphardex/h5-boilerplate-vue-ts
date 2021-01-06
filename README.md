@@ -71,3 +71,7 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Others
+
+除了自己公司外的项目都要加上技术支持
