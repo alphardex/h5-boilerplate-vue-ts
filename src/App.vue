@@ -43,30 +43,59 @@ body {
   }
 }
 
-@mixin cover($top: 0, $left: 0, $width: 100%, $height: 100%) {
-  position: absolute;
+@mixin cover(
+  $top: 0,
+  $left: 0,
+  $width: 100%,
+  $height: 100%,
+  $position: absolute
+) {
+  position: $position;
   top: $top;
   left: $left;
   width: $width;
   height: $height;
 }
 
-@mixin inset($inset: 0) {
-  position: absolute;
+@mixin inset($inset: 0, $position: absolute) {
+  position: $position;
   top: $inset;
   left: $inset;
   right: $inset;
   bottom: $inset;
 }
 
-@mixin flex-center() {
-  display: flex;
+@mixin square($width) {
+  width: $width;
+  height: $width;
+}
+
+@mixin circle($radius) {
+  width: $radius;
+  height: $radius;
+  border-radius: 50%;
+}
+
+@mixin flex-center($display: flex) {
+  display: $display;
   justify-content: center;
   align-items: center;
 }
 
-@mixin hv-center() {
-  position: absolute;
+@mixin h-center($position: absolute) {
+  position: $position;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin v-center($position: absolute) {
+  position: $position;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin hv-center($position: absolute) {
+  position: $position;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
