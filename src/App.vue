@@ -156,6 +156,24 @@ p {
 
 // utils
 
+$colors: "red", "orange", "yellow", "green", "blue", "purple", "brown", "grey",
+  "white";
+@each $c in $colors {
+  @for $i from 1 through 8 {
+    .text-#{$c}-#{$i} {
+      color: var(--#{$c}-color-#{$i});
+    }
+
+    .bg-#{$c}-#{$i} {
+      background: var(--#{$c}-color-#{$i});
+    }
+
+    .border-#{$c}-#{$i} {
+      border-color: var(--#{$c}-color-#{$i});
+    }
+  }
+}
+
 // common
 
 .music {
