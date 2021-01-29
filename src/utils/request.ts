@@ -1,12 +1,25 @@
 import axios from "axios";
 import Alert from "@/utils/alert";
-import { activityID, publicKey } from "@/consts/index";
+import {
+  activityID,
+  publicKey,
+  API,
+  statusCode,
+  isDevMode,
+} from "@/consts/index";
 import qs from "qs";
 import md5 from "blueimp-md5";
 // @ts-ignore
 import JSEncrypt from "jsencrypt";
 
 const service = axios.create();
+
+const checkAuth = (status: number) => {
+  const currentUrl = location.href;
+  if (Number(status) === statusCode.UNAUTHORIZED) {
+    location.href = `${API.wxLogin}&backUri=${currentUrl}`;
+  }
+};
 
 const rsaEncrypt = (rawData: any) => {
   const encryptor = new JSEncrypt();
@@ -21,17 +34,22 @@ const md5Encrypt = (rawData: any) => {
   return md5Data;
 };
 
+const getEncryptedData = (rawData: any) => {
+  const entries = Object.entries(rawData);
+  entries.sort();
+  const rsaRawData = Object.fromEntries(entries);
+  const md5RawData = { ...rsaRawData, key: activityID };
+  const md5Data = md5Encrypt(md5RawData);
+  const rsaData = rsaEncrypt(rsaRawData);
+  return { md5Data, rsaData };
+};
+
 service.interceptors.request.use((config) => {
   if (config.method === "post") {
     const data = config.data;
-    if (data.useEncrypt) {
+    if (!isDevMode && data.useEncrypt) {
       delete data.useEncrypt;
-      const entries = Object.entries(data);
-      entries.sort();
-      const rsaRawData = Object.fromEntries(entries);
-      const md5RawData = { ...rsaRawData, key: activityID };
-      const md5Data = md5Encrypt(md5RawData);
-      const rsaData = rsaEncrypt(rsaRawData);
+      const { md5Data, rsaData } = getEncryptedData(data);
       config.headers.Authorization = md5Data;
       const fd = new FormData();
       fd.append("data", rsaData);
@@ -49,7 +67,8 @@ service.interceptors.request.use((config) => {
 
 service.interceptors.response.use(
   (response) => {
-    if (response.status === 200) {
+    if (Number(response.status) === 200) {
+      checkAuth(response.data.code);
       return Promise.resolve(response);
     } else {
       return Promise.reject(response);
@@ -60,7 +79,7 @@ service.interceptors.response.use(
   }
 );
 
-const get = (url: string, params = {}): Promise<any> => {
+const get = (url: string, params: Record<string, any> = {}): Promise<any> => {
   return new Promise((resolve, reject) => {
     service
       .get(url, { params })
@@ -69,7 +88,9 @@ const get = (url: string, params = {}): Promise<any> => {
         if (Number(data.code) === 200) {
           resolve(data.data);
         } else {
-          Alert.fire(data.msg);
+          if (Number(data.code) !== 300) {
+            Alert.fire(data.msg);
+          }
           resolve(data);
         }
       })
@@ -79,7 +100,11 @@ const get = (url: string, params = {}): Promise<any> => {
   });
 };
 
-const post = (url: string, data: Record<string, any> = {}, useEncrypt = false): Promise<any> => {
+const post = (
+  url: string,
+  data: Record<string, any> = {},
+  useEncrypt = false
+): Promise<any> => {
   if (useEncrypt) {
     data.useEncrypt = true;
   }
@@ -91,7 +116,7 @@ const post = (url: string, data: Record<string, any> = {}, useEncrypt = false): 
         if (Number(data.code) === 200) {
           resolve(data);
         } else {
-          if (Number(data.code) !== 301) {
+          if (Number(data.code) !== 300 || Number(data.code) !== 301) {
             Alert.fire(data.msg);
           }
           resolve(data);
