@@ -1,5 +1,12 @@
 <template>
+  <iframe
+    v-if="src.includes('v.qq.com')"
+    :src="src"
+    frameborder="0"
+    allowfullscreen
+  ></iframe>
   <video
+    v-else
     :src="src"
     :poster="poster"
     controls
