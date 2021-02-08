@@ -15,11 +15,10 @@
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
 import useDialog from "@/hooks/useDialog";
 import useWx from "@/hooks/useWx";
-import { Info } from "@/types";
 import { getInfo } from "@/apis";
 
 interface State {
-  info: Info | null;
+  info: any;
 }
 
 export default defineComponent({

@@ -1,5 +1,4 @@
 import { API } from "@/consts";
-import { Info } from "@/types";
 import { service } from "@/utils/request";
 import MockAdapter from "axios-mock-adapter";
 import Mock from "mockjs";
@@ -33,7 +32,7 @@ class MockServer {
           url: Mock.Random.url(),
         },
         act_rule: Mock.Random.paragraph(),
-      } as Info,
+      },
     });
   }
 }
