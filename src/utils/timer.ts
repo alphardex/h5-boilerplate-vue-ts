@@ -35,4 +35,19 @@ class Timer {
   }
 }
 
-export { Timer };
+const addHoursToDate = (d: Date, n: number) => {
+  d.setTime(d.getTime() + n * 3600000);
+  return d;
+};
+
+const addMinutesToDate = (d: Date, n: number) => {
+  d.setTime(d.getTime() + n * 60000);
+  return d;
+};
+
+const addSecondsToDate = (d: Date, n: number) => {
+  d.setTime(d.getTime() + n * 1000);
+  return d;
+};
+
+export { Timer, addHoursToDate, addMinutesToDate, addSecondsToDate };

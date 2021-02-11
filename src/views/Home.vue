@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen">
+  <div class="relative min-h-screen">
     <teleport to="#dialogs">
       <div
         class="backdrop"
@@ -38,5 +38,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

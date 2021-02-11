@@ -174,6 +174,25 @@ $colors: "red", "orange", "yellow", "green", "blue", "purple", "brown", "grey",
   }
 }
 
+.marquee {
+  --basic-height: 10vw;
+  --basic-duration: 3s;
+  --total-duration: calc(var(--basic-duration) * var(--total-count));
+  --total-height: calc(var(--basic-height) * var(--total-count) * -1);
+
+  animation: scroll-down var(--total-duration) linear infinite;
+}
+
+@keyframes scroll-down {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(var(--total-height));
+  }
+}
+
 // common
 
 .music {
