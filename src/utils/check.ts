@@ -1,4 +1,5 @@
 import Alert from "@/utils/alert";
+import ky from "kyouka";
 
 const checkDate = (beginDate: Date, endDate: Date) => {
   const now = new Date();
@@ -13,4 +14,20 @@ const checkDate = (beginDate: Date, endDate: Date) => {
   return true;
 };
 
-export { checkDate };
+const checkNameAndTel = (name: string, tel: string) => {
+  if (!name) {
+    Alert.fire("请输入姓名");
+    return false;
+  }
+  if (!tel) {
+    Alert.fire("请输入电话");
+    return false;
+  }
+  if (!ky.isPhoneNumber(tel)) {
+    Alert.fire("电话号码的格式不对");
+    return false;
+  }
+  return true;
+};
+
+export { checkDate, checkNameAndTel };
