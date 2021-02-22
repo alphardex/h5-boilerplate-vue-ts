@@ -26,7 +26,7 @@ class Timer {
       this.duration = duration;
       totalSeconds--;
       this.totalSeconds = totalSeconds;
-      if (totalSeconds <= 0) {
+      if (totalSeconds < 0) {
         this.totalSeconds = 0;
         clearInterval(this.timer);
       }
