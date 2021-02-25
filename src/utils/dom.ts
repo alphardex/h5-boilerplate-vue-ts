@@ -15,13 +15,18 @@ const preloadAudios = () => {
   });
 };
 
-const compressAndUploadMultipleImages = (e: Event, cb: Function) => {
+const compressAndUploadMultipleImages = (
+  e: Event,
+  beforeUpload: Function,
+  onUpload: Function
+) => {
   const files = (e.target as HTMLInputElement).files;
-  if (files) {
-    Array.from(files).forEach((file: any) => {
+  if (!ky.isEmpty(files)) {
+    beforeUpload();
+    Array.from(files!).forEach((file: any) => {
       compressImage(file, (compressed: Blob) => {
         ky.loadImageAsBase64URL(compressed, (base64URL: string) => {
-          cb(base64URL);
+          onUpload(base64URL);
         });
       });
     });
