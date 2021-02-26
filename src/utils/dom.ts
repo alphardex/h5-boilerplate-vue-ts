@@ -1,3 +1,4 @@
+import router from "@/router";
 import ky from "kyouka";
 import { compressImage } from "./image";
 
@@ -39,4 +40,8 @@ const compressAndUploadMultipleImages = (
   }
 };
 
-export { preloadAudios, compressAndUploadMultipleImages };
+const goBack = () => {
+  router.go(-1);
+};
+
+export { preloadAudios, compressAndUploadMultipleImages, goBack };
