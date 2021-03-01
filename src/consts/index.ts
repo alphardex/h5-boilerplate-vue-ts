@@ -17,6 +17,7 @@ const API = {
   wxShare: "wxShareConfigParameters",
   wxLogin: "wxLogin",
   info: "info",
+  uploadPic: "uploadPic",
 };
 
 Object.entries(API).forEach(([key, value]) => {
