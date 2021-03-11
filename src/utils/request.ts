@@ -17,7 +17,7 @@ const service = axios.create();
 
 const checkAuth = (data: any) => {
   const code = data.code;
-  const app = data.data.app || "no";
+  const app = data.data ? data.data.app : "no";
   const currentUrl = location.href;
   if (Number(code) === statusCode.UNAUTHORIZED && !ky.yesNo(app)) {
     location.href = `${API.wxLogin}&backUri=${currentUrl}`;
