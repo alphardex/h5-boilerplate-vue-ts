@@ -17,7 +17,8 @@ class Timer {
       minute: 0,
       second: 0,
     };
-    this.totalSeconds = ky.getTimeDeltaAsSeconds(beginDate, endDate);
+    const totalSeconds = ky.getTimeDeltaAsSeconds(beginDate, endDate);
+    this.totalSeconds = totalSeconds >= 0 ? totalSeconds : 0;
   }
   start() {
     const timer = setInterval(() => {

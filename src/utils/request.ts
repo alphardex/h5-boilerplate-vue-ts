@@ -11,12 +11,15 @@ import qs from "qs";
 import md5 from "blueimp-md5";
 // @ts-ignore
 import JSEncrypt from "jsencrypt";
+import ky from "kyouka";
 
 const service = axios.create();
 
-const checkAuth = (status: number) => {
+const checkAuth = (data: any) => {
+  const code = data.code;
+  const app = data.data.app || "no";
   const currentUrl = location.href;
-  if (Number(status) === statusCode.UNAUTHORIZED) {
+  if (Number(code) === statusCode.UNAUTHORIZED && !ky.yesNo(app)) {
     location.href = `${API.wxLogin}&backUri=${currentUrl}`;
   }
 };
@@ -68,7 +71,7 @@ service.interceptors.request.use((config) => {
 service.interceptors.response.use(
   (response) => {
     if (Number(response.status) === 200) {
-      checkAuth(response.data.code);
+      checkAuth(response.data);
       return Promise.resolve(response);
     } else {
       return Promise.reject(response);

@@ -5,16 +5,24 @@ import { getWxShare } from "@/apis";
 import { isMobile } from "@/consts";
 
 export default () => {
-  const wxShare = async (info: Info, shareUrl = "") => {
+  const wxShare = async (info: Info, shareUrl = "", shareTitle = "") => {
     document.title = info.title || "";
-    document.querySelector("meta[name=description]")!.setAttribute("content", info.description || "");
-    document.querySelector("meta[name=keywords]")!.setAttribute("content", info.keywords || "");
+    document
+      .querySelector("meta[name=description]")!
+      .setAttribute("content", info.description || "");
+    document
+      .querySelector("meta[name=keywords]")!
+      .setAttribute("content", info.keywords || "");
     const shareInfo = info.share_info;
     if (isMobile && shareInfo) {
       shareInfo.callback = () => {
         location.reload();
       };
-      shareInfo.apilist = ["hideMenuItems", "onMenuShareTimeline", "onMenuShareAppMessage"];
+      shareInfo.apilist = [
+        "hideMenuItems",
+        "onMenuShareTimeline",
+        "onMenuShareAppMessage",
+      ];
       const wxConfig = await getWxShare();
       wx.config({
         debug: false,
@@ -26,8 +34,9 @@ export default () => {
       });
       wx.ready(() => {
         const link = shareUrl || shareInfo.url;
+        const title = shareTitle || shareInfo.title;
         wx.onMenuShareTimeline({
-          title: shareInfo.title,
+          title,
           link,
           imgUrl: shareInfo.img,
           success() {
@@ -38,7 +47,7 @@ export default () => {
           },
         });
         wx.onMenuShareAppMessage({
-          title: shareInfo.title,
+          title,
           desc: shareInfo.desc,
           link,
           imgUrl: shareInfo.img,

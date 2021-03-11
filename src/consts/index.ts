@@ -28,6 +28,16 @@ console.log(JSON.stringify(API));
 
 const navItems: NavItem[] = [{ to: { name: "Home" }, text: "首页" }];
 
+const masonryConfig = {
+  sel: ".masonry",
+  config: {
+    itemSelector: `.masonry-item`,
+    columnWidth: ky.vw2px(42),
+    fitWidth: true,
+    gutter: ky.vw2px(3),
+  },
+};
+
 export {
   activityID,
   publicKey,
@@ -36,4 +46,5 @@ export {
   API,
   navItems,
   statusCode,
+  masonryConfig,
 };

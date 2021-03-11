@@ -34,6 +34,14 @@ class MockServer {
         act_rule: Mock.Random.paragraph(),
       },
     });
+    mock.onPost(API.uploadPic).reply(200, {
+      code: 200,
+      msg: "ok",
+      data: {
+        pic: Mock.Random.image(),
+        small: Mock.Random.image(),
+      },
+    });
   }
 }
 
