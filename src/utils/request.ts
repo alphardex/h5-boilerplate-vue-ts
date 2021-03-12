@@ -60,7 +60,13 @@ service.interceptors.request.use((config) => {
     } else {
       const fd = new FormData();
       Object.entries(data).forEach(([key, value]) => {
-        fd.append(key, value as string | Blob);
+        if (Array.isArray(value)) {
+          value.forEach((item: any) => {
+            fd.append(`${key}[]`, item);
+          });
+        } else {
+          fd.append(key, value as string | Blob);
+        }
       });
       config.data = fd;
     }
