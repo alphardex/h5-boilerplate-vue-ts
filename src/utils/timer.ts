@@ -29,6 +29,7 @@ class Timer {
       minute: 0,
       second: 0,
     };
+    this.padDuration(this.duration);
     const totalSeconds = ky.getTimeDeltaAsSeconds(beginDate, endDate);
     this.totalSeconds = totalSeconds >= 0 ? totalSeconds : 0;
   }
@@ -36,11 +37,7 @@ class Timer {
     const timer = setInterval(() => {
       let { totalSeconds } = this;
       const duration = ky.formatDuration(totalSeconds);
-      if (this.isPadZero) {
-        Object.entries(duration).forEach(([key, value]) => {
-          (duration as any)[key] = padZero(value, 2);
-        });
-      }
+      this.padDuration(duration);
       this.duration = duration;
       totalSeconds--;
       this.totalSeconds = totalSeconds;
@@ -50,6 +47,13 @@ class Timer {
       }
     }, 1000);
     this.timer = timer;
+  }
+  padDuration(duration: any) {
+    if (this.isPadZero) {
+      Object.entries(duration).forEach(([key, value]) => {
+        (duration as any)[key] = padZero(value as any, 2);
+      });
+    }
   }
 }
 
