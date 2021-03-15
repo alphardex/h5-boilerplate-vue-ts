@@ -14,14 +14,17 @@ class Timer {
   duration: Time;
   totalSeconds: number;
   isPadZero: boolean;
+  convertMinuteToSecond: boolean;
   constructor(
     beginDate: Date | number,
     endDate: Date | number,
-    isPadZero = false
+    isPadZero = false,
+    convertMinuteToSecond = false
   ) {
     this.beginDate = beginDate;
     this.endDate = endDate;
     this.isPadZero = isPadZero;
+    this.convertMinuteToSecond = convertMinuteToSecond;
     this.timer = 0;
     this.duration = {
       day: 0,
@@ -37,6 +40,10 @@ class Timer {
     const timer = setInterval(() => {
       let { totalSeconds } = this;
       const duration = ky.formatDuration(totalSeconds);
+      if (this.convertMinuteToSecond && duration.minute === 1) {
+        duration.minute = 0;
+        duration.second = 60;
+      }
       this.padDuration(duration);
       this.duration = duration;
       totalSeconds--;
