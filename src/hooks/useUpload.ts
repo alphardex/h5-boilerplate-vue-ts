@@ -1,4 +1,4 @@
-import Alert from "@/utils/alert";
+import { Alert } from "@/utils/alert";
 import { compressAndUploadMultipleImages } from "@/utils/dom";
 import { ref } from "vue";
 

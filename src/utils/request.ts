@@ -1,5 +1,5 @@
 import axios from "axios";
-import Alert from "@/utils/alert";
+import { Alert } from "@/utils/alert";
 import {
   activityID,
   publicKey,

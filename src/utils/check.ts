@@ -1,4 +1,4 @@
-import Alert from "@/utils/alert";
+import { Alert } from "@/utils/alert";
 import ky from "kyouka";
 
 const checkDate = (beginDate: Date, endDate: Date) => {
