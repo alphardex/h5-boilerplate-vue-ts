@@ -33,6 +33,7 @@ export default defineComponent({
     onMounted(async () => {
       state.info = await getInfo();
       await wx.wxShare(state.info);
+      wx.appShare(state.info);
     });
     return { dialog, wx, ...toRefs(state) };
   },

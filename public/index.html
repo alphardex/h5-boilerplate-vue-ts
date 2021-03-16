@@ -34,14 +34,13 @@
             success(res) {
               const data = res.data;
               const shareInfo = data.share_info;
-              const { title, desc, img } = shareInfo;
-              const myShareUrl = data.my_share_url;
+              const { title, desc, img, url } = shareInfo;
               const args = {
                 method: "setShareData",
                 share_title: title,
                 share_description: desc,
                 share_img: img,
-                share_url: myShareUrl,
+                share_url: url,
               };
               window.wapapp.callFunction(JSON.stringify(args));
             },
