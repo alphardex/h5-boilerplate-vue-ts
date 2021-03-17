@@ -20,68 +20,6 @@
     </noscript>
     <div id="app"></div>
     <div id="dialogs"></div>
-    <script src="http://static.cs090.com/amazeui/2.7.2/js/jquery.min.js"></script>
-    <script>
-      function setShareData() {
-        if (window.wapapp) {
-          $.ajax({
-            url: "main.php",
-            data: {
-              mod: "info",
-            },
-            dataType: "json",
-            method: "get",
-            success(res) {
-              const data = res.data;
-              const shareInfo = data.share_info;
-              const { title, desc, img, url } = shareInfo;
-              const args = {
-                method: "setShareData",
-                share_title: title,
-                share_description: desc,
-                share_img: img,
-                share_url: url,
-              };
-              window.wapapp.callFunction(JSON.stringify(args));
-            },
-          });
-        }
-      }
-    </script>
-    <script>
-      function go_login(gourl) {
-        const args = {
-          method: "goToLogin",
-          msg: "请先登录",
-          gourl,
-        };
-        try {
-          window.wapapp.callFunction(JSON.stringify(args));
-        } catch (e) {
-          Show_update();
-        }
-      }
-      function Show_update() {
-        alert("请先升级客户端版本！");
-        setTimeout("location.href='http://app.cs090.com/2wm/'", 1500);
-      }
-      if (window.wapapp) {
-        $.ajax({
-          url: "main.php",
-          data: {
-            mod: "info",
-          },
-          dataType: "json",
-          method: "get",
-          success(res) {
-            const data = res.data;
-            const shareInfo = data.share_info;
-            const { title, desc, img, url } = shareInfo;
-            go_login(url);
-          },
-        });
-      }
-    </script>
     <!-- built files will be auto injected -->
     <!-- 站长统计 -->
     <div style="display: none;"></div>
