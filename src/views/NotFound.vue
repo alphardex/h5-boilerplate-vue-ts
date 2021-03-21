@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center">
-    <span class="text-white">你访问的页面不存在！</span>
+  <div class="relative min-h-screen flex-center">
+    <span class="text-white">啊哦，页面走丢了~</span>
   </div>
 </template>

@@ -1,12 +1,6 @@
 import { Time } from "kyouka/types/types";
 import ky from "kyouka";
 
-// https:stackoverflow.com/questions/10073699/pad-a-number-with-leading-zeros-in-javascript
-const padZero = (n: number | string, width: number, z = "0") => {
-  n = n + "";
-  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-};
-
 class Timer {
   beginDate: Date | number;
   endDate: Date | number;
@@ -58,25 +52,10 @@ class Timer {
   padDuration(duration: any) {
     if (this.isPadZero) {
       Object.entries(duration).forEach(([key, value]) => {
-        (duration as any)[key] = padZero(value as any, 2);
+        (duration as any)[key] = ky.padNumber(value as any, 2);
       });
     }
   }
 }
 
-const addHoursToDate = (d: Date, n: number) => {
-  d.setTime(d.getTime() + n * 3600000);
-  return d;
-};
-
-const addMinutesToDate = (d: Date, n: number) => {
-  d.setTime(d.getTime() + n * 60000);
-  return d;
-};
-
-const addSecondsToDate = (d: Date, n: number) => {
-  d.setTime(d.getTime() + n * 1000);
-  return d;
-};
-
-export { Timer, addHoursToDate, addMinutesToDate, addSecondsToDate, padZero };
+export { Timer };

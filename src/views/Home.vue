@@ -1,6 +1,6 @@
 <template>
   <div class="relative min-h-screen">
-    <div class="fixed bottom-4 h-center text-sm">常熟零距离技术支持</div>
+    <div class="absolute bottom-4 h-center text-sm">常熟零距离技术支持</div>
     <teleport to="#dialogs">
       <div
         class="backdrop"

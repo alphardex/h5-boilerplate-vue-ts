@@ -8,4 +8,10 @@ const TimerAlert = Swal.mixin({
   timer: 600,
   confirmButtonText: "好的",
 });
-export { Alert, TimerAlert };
+const Confirm = Swal.mixin({
+  customClass: { popup: "alert-popup", title: "alert-title" },
+  confirmButtonText: "确认",
+  cancelButtonText: "取消",
+  showCancelButton: true,
+});
+export { Alert, TimerAlert, Confirm };
