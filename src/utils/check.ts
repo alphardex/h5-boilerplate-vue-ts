@@ -30,4 +30,12 @@ const checkNameAndTel = (name: string, tel: string) => {
   return true;
 };
 
-export { checkDate, checkNameAndTel };
+const checkAgree = (agree: boolean) => {
+  if (!agree) {
+    Alert.fire("请先同意隐私条款");
+    return false;
+  }
+  return true;
+};
+
+export { checkDate, checkNameAndTel, checkAgree };
