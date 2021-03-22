@@ -15,6 +15,10 @@ import ky from "kyouka";
 
 const service = axios.create();
 
+const isOk = (res: any) => {
+  return Number(res.code) === 200;
+};
+
 const checkAuth = (data: any) => {
   const code = data.code;
   const app = data.data ? data.data.app : "no";
@@ -94,7 +98,7 @@ const get = (url: string, params: Record<string, any> = {}): Promise<any> => {
       .get(url, { params })
       .then((res) => {
         const data = res.data;
-        if (Number(data.code) === 200) {
+        if (isOk(data)) {
           resolve(data.data);
         } else {
           if (Number(data.code) !== 300) {
@@ -122,7 +126,7 @@ const post = (
       .post(url, data)
       .then((res) => {
         const data = res.data;
-        if (Number(data.code) === 200) {
+        if (isOk(data)) {
           resolve(data);
         } else {
           if (Number(data.code) !== 300 || Number(data.code) !== 301) {
@@ -137,4 +141,4 @@ const post = (
   });
 };
 
-export { get, post, service };
+export { get, post, service, isOk };
