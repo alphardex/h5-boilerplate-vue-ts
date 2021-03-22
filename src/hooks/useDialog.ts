@@ -13,6 +13,7 @@ export default () => {
   };
 
   const openDialog = (fn: Function, closable = true) => () => {
+    closeAllDialog();
     showBackdrop.value = true;
     isBackdropClosable.value = closable;
     fn();
