@@ -1,6 +1,9 @@
 import router from "@/router";
 import ky from "kyouka";
 import { compressImage } from "./image";
+import dayjs from "dayjs";
+
+dayjs.locale("zh-cn");
 
 const preloadAudios = () => {
   const audios = document.querySelectorAll("audio:not(.bgm)");
@@ -44,4 +47,7 @@ const goBack = () => {
   router.go(-1);
 };
 
-export { preloadAudios, compressAndUploadMultipleImages, goBack };
+const formatDate = (timestamp: number, format = "MM月DD日HH:mm") =>
+  dayjs.unix(Number(timestamp)).format(format);
+
+export { preloadAudios, compressAndUploadMultipleImages, goBack, formatDate };
