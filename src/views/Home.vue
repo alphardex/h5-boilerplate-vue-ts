@@ -23,7 +23,7 @@ export default defineComponent({
   setup() {
     const dialog = useDialog();
     const wx = useWx();
-    const state = reactive({
+    const state = reactive<any>({
       info: null,
     });
     onMounted(async () => {
