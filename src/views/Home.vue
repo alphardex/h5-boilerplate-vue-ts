@@ -18,16 +18,12 @@ import useDialog from "@/hooks/useDialog";
 import useWx from "@/hooks/useWx";
 import { getInfo } from "@/apis";
 
-interface State {
-  info: any;
-}
-
 export default defineComponent({
   name: "Home",
   setup() {
     const dialog = useDialog();
     const wx = useWx();
-    const state = reactive<State>({
+    const state = reactive({
       info: null,
     });
     onMounted(async () => {
