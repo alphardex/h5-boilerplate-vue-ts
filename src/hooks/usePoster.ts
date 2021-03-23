@@ -6,12 +6,15 @@ export default () => {
   const posterUrl = ref("");
   const isGenerating = ref(false);
 
-  const generatePoster = async (backgroundColor = "transparent") => {
+  const generatePoster = async (
+    sel = "capture",
+    backgroundColor = "transparent"
+  ) => {
     window.scrollTo(0, 0);
     isGenerating.value = true;
     posterUrl.value = "";
     await ky.sleep(200);
-    const capture = document.querySelector(".capture")! as HTMLElement;
+    const capture = document.querySelector(sel)! as HTMLElement;
     const canvas = await html2canvas(capture, {
       useCORS: true,
       backgroundColor,
