@@ -6,22 +6,32 @@ export default () => {
   const posterUrl = ref("");
   const isGenerating = ref(false);
 
-  const generatePoster = async (
-    sel = "capture",
+  const generateCapture = async (
+    capture: HTMLElement,
     backgroundColor = "transparent"
   ) => {
-    window.scrollTo(0, 0);
-    isGenerating.value = true;
-    posterUrl.value = "";
-    await ky.sleep(200);
-    const capture = document.querySelector(sel)! as HTMLElement;
     const canvas = await html2canvas(capture, {
       useCORS: true,
       backgroundColor,
     });
     const dataUrl = canvas.toDataURL("image/jpg");
+    return dataUrl;
+  };
+
+  const generatePoster = async (sel = ".poster-capture") => {
+    posterUrl.value = "";
+    window.scrollTo(0, 0);
+    isGenerating.value = true;
+    await ky.sleep(200);
+    const poster = document.querySelector(sel) as HTMLElement;
+    const dataUrl = await generateCapture(poster);
     posterUrl.value = dataUrl;
     isGenerating.value = false;
   };
-  return { posterUrl, generatePoster, isGenerating };
+
+  return {
+    posterUrl,
+    isGenerating,
+    generatePoster,
+  };
 };
