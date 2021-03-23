@@ -12,6 +12,7 @@ import md5 from "blueimp-md5";
 // @ts-ignore
 import JSEncrypt from "jsencrypt";
 import ky from "kyouka";
+import { serialize } from "object-to-formdata";
 
 const service = axios.create();
 
@@ -62,16 +63,7 @@ service.interceptors.request.use((config) => {
       fd.append("data", rsaData);
       config.data = fd;
     } else {
-      const fd = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          value.forEach((item: any) => {
-            fd.append(`${key}[]`, item);
-          });
-        } else {
-          fd.append(key, value as string | Blob);
-        }
-      });
+      const fd = serialize(data, { allowEmptyArrays: true, indices: true });
       config.data = fd;
     }
   }

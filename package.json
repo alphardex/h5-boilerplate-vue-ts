@@ -21,6 +21,7 @@
     "kyouka": "^1.2.4",
     "lazyload": "^2.0.0-rc.2",
     "masonry-layout": "^4.2.2",
+    "object-to-formdata": "^4.1.0",
     "qs": "^6.9.4",
     "sweetalert2": "^10.3.6",
     "vconsole": "^3.3.4",
