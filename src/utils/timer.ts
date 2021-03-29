@@ -1,52 +1,46 @@
-import { Time } from "kyouka/types/types";
 import ky from "kyouka";
+import { Time } from "kyouka/types/types";
 
 class Timer {
   beginDate: Date | number;
   endDate: Date | number;
   timer: number;
   duration: Time;
-  totalSeconds: number;
+  totalMs: number;
   isPadZero: boolean;
-  convertMinuteToSecond: boolean;
   constructor(
     beginDate: Date | number,
     endDate: Date | number,
-    isPadZero = false,
-    convertMinuteToSecond = false
+    isPadZero = false
   ) {
     this.beginDate = beginDate;
     this.endDate = endDate;
     this.isPadZero = isPadZero;
-    this.convertMinuteToSecond = convertMinuteToSecond;
     this.timer = 0;
     this.duration = {
       day: 0,
       hour: 0,
       minute: 0,
       second: 0,
+      millisecond: 0,
     };
     this.padDuration(this.duration);
-    const totalSeconds = ky.getTimeDeltaAsSeconds(beginDate, endDate);
-    this.totalSeconds = totalSeconds >= 0 ? totalSeconds : 0;
+    const totalMs = ky.getTimeDeltaAsSeconds(beginDate, endDate);
+    this.totalMs = totalMs >= 0 ? totalMs : 0;
   }
   start() {
     const timer = setInterval(() => {
-      let { totalSeconds } = this;
-      const duration = ky.formatDuration(totalSeconds);
-      if (this.convertMinuteToSecond && duration.minute === 1) {
-        duration.minute = 0;
-        duration.second = 60;
-      }
+      let { totalMs } = this;
+      const duration = ky.formatDuration(totalMs);
       this.padDuration(duration);
       this.duration = duration;
-      totalSeconds--;
-      this.totalSeconds = totalSeconds;
-      if (totalSeconds < 0) {
-        this.totalSeconds = 0;
+      totalMs -= 10;
+      this.totalMs = totalMs;
+      if (totalMs < 0) {
+        this.totalMs = 0;
         clearInterval(this.timer);
       }
-    }, 1000);
+    }, 10);
     this.timer = timer;
   }
   padDuration(duration: any) {
