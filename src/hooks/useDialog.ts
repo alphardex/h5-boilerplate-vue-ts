@@ -5,11 +5,13 @@ export default () => {
   const isBackdropClosable = ref(true);
   const showShareTip = ref(false);
   const showFollowDialog = ref(false);
+  const showRuleDialog = ref(false);
 
   const closeAllDialog = () => {
     showBackdrop.value = false;
     showShareTip.value = false;
     showFollowDialog.value = false;
+    showRuleDialog.value = false;
   };
 
   const openDialog = (fn: Function, closable = true) => () => {
@@ -27,6 +29,10 @@ export default () => {
     showFollowDialog.value = true;
   });
 
+  const openRuleDialog = openDialog(() => {
+    showRuleDialog.value = true;
+  });
+
   return {
     showBackdrop,
     isBackdropClosable,
@@ -35,5 +41,7 @@ export default () => {
     openShareTip,
     showFollowDialog,
     openFollowDialog,
+    showRuleDialog,
+    openRuleDialog,
   };
 };

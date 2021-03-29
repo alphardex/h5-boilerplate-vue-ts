@@ -84,7 +84,11 @@ service.interceptors.response.use(
   }
 );
 
-const get = (url: string, params: Record<string, any> = {}): Promise<any> => {
+const get = (
+  url: string,
+  params: Record<string, any> = {},
+  alertExcludeCodes = [300, 301]
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     service
       .get(url, { params })
@@ -93,7 +97,7 @@ const get = (url: string, params: Record<string, any> = {}): Promise<any> => {
         if (isOk(data)) {
           resolve(data.data);
         } else {
-          if (Number(data.code) !== 300) {
+          if (!alertExcludeCodes.includes(data.code)) {
             Alert.fire(data.msg);
           }
           resolve(data);
@@ -108,7 +112,8 @@ const get = (url: string, params: Record<string, any> = {}): Promise<any> => {
 const post = (
   url: string,
   data: Record<string, any> = {},
-  useEncrypt = false
+  useEncrypt = false,
+  alertExcludeCodes = [300, 301]
 ): Promise<any> => {
   if (useEncrypt) {
     data.useEncrypt = true;
@@ -121,7 +126,7 @@ const post = (
         if (isOk(data)) {
           resolve(data);
         } else {
-          if (Number(data.code) !== 300 || Number(data.code) !== 301) {
+          if (!alertExcludeCodes.includes(data.code)) {
             Alert.fire(data.msg);
           }
           resolve(data);

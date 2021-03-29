@@ -1,4 +1,3 @@
-import { NavItem } from "@/types";
 import ky from "kyouka";
 
 const activityID = "";
@@ -18,6 +17,7 @@ const API = {
   wxLogin: "wxLogin",
   info: "info",
   uploadPic: "uploadPic",
+  share: "share",
 };
 
 Object.entries(API).forEach(([key, value]) => {
@@ -26,7 +26,7 @@ Object.entries(API).forEach(([key, value]) => {
 
 console.log(JSON.stringify(API));
 
-const navItems: NavItem[] = [{ to: { name: "Home" }, text: "首页" }];
+const navItems = [{ to: { name: "Home" }, text: "首页" }];
 
 const masonryConfig = {
   sel: ".masonry",

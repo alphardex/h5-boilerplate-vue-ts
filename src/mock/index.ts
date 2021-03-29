@@ -42,6 +42,10 @@ class MockServer {
         small: Mock.Random.image(),
       },
     });
+    mock.onPost(API.share).reply(200, {
+      code: 200,
+      msg: "ok",
+    });
   }
 }
 
