@@ -4,6 +4,7 @@
     :src="src"
     frameborder="0"
     allowfullscreen
+    class="block"
   ></iframe>
   <video
     v-else
@@ -14,7 +15,7 @@
     webkit-playsinline
     x5-video-player-type="h5-page"
     controlslist="nodownload"
-    class="bg-black"
+    class="bg-black block"
   ></video>
 </template>
 
