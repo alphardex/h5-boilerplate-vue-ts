@@ -8,11 +8,13 @@ export default () => {
 
   const generateCapture = async (
     capture: HTMLElement,
-    backgroundColor = "transparent"
+    backgroundColor = "transparent",
+    scale = 2
   ) => {
     const canvas = await html2canvas(capture, {
       useCORS: true,
       backgroundColor,
+      scale: window.devicePixelRatio * scale,
     });
     const dataUrl = canvas.toDataURL("image/jpg");
     return dataUrl;
