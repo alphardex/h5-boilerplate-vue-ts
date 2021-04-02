@@ -50,4 +50,13 @@ const goBack = () => {
 const formatDate = (timestamp: number, format = "MM月DD日HH:mm") =>
   dayjs.unix(Number(timestamp)).format(format);
 
-export { preloadAudios, compressAndUploadMultipleImages, goBack, formatDate };
+const isElBottomVisible = (el: HTMLElement, offset = 0): boolean =>
+  el.offsetHeight + el.scrollTop >= el.scrollHeight - offset;
+
+export {
+  preloadAudios,
+  compressAndUploadMultipleImages,
+  goBack,
+  formatDate,
+  isElBottomVisible,
+};
