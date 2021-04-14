@@ -3,7 +3,7 @@
     <div
       v-for="(item, i) in bullets"
       :key="i"
-      class="bullet inline-flex px-4 py-1 leading-snug text-sm text-white bg-primary rounded-3xl pointer-events-none"
+      class="bullet inline-flex leading-snug text-sm pointer-events-none"
     >
       {{ item.msg }}
     </div>
@@ -35,8 +35,7 @@ export default defineComponent({
   $heights: 25vh, 35vh, 45vh, 55vh, 65vh, 75vh, 25vh, 35vh, 45vh, 55vh, 65vh,
     75vh, 25vh, 35vh, 45vh, 55vh, 65vh, 75vh, 25vh, 35vh, 45vh, 55vh, 65vh, 75vh,
     25vh, 35vh, 45vh, 55vh, 65vh, 75vh, 25vh, 35vh, 45vh, 55vh, 65vh, 75vh;
-  $min-height: 24;
-  $max-height: 60;
+  $interval: 10s;
 
   position: absolute;
   z-index: 100;
@@ -45,45 +44,15 @@ export default defineComponent({
   transform: translateX(100%);
   animation: bullet-slide-left linear 10s forwards;
 
-  @for $i from 1 through 5 {
-    &:nth-child(#{$i}) {
-      top: nth($heights, $i);
-      animation-delay: #{random_range(40, 400) / 100 * 1s};
-    }
-  }
-
-  @for $i from 6 through 10 {
-    &:nth-child(#{$i}) {
-      top: nth($heights, $i);
-      animation-delay: #{random_range(40, 400) / 100 * 1s + 10s * 1};
-    }
-  }
-
-  @for $i from 11 through 15 {
-    &:nth-child(#{$i}) {
-      top: nth($heights, $i);
-      animation-delay: #{random_range(40, 400) / 100 * 1s + 10s * 2};
-    }
-  }
-
-  @for $i from 16 through 20 {
-    &:nth-child(#{$i}) {
-      top: nth($heights, $i);
-      animation-delay: #{random_range(40, 400) / 100 * 1s + 10s * 3};
-    }
-  }
-
-  @for $i from 21 through 25 {
-    &:nth-child(#{$i}) {
-      top: nth($heights, $i);
-      animation-delay: #{random_range(40, 400) / 100 * 1s + 10s * 4};
-    }
-  }
-
-  @for $i from 26 through 30 {
-    &:nth-child(#{$i}) {
-      top: nth($heights, $i);
-      animation-delay: #{random_range(40, 400) / 100 * 1s + 10s * 5};
+  $m: 5;
+  $n: 6;
+  @for $i from 1 through $m {
+    @for $j from 1 through $n {
+      $k: $n * ($i - 1) + $j;
+      &:nth-child(#{$k}) {
+        top: nth($heights, $k);
+        animation-delay: #{random_range(40, 400) / 100 + $interval * ($i - 1)};
+      }
     }
   }
 }
