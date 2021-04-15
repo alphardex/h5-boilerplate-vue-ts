@@ -17,6 +17,7 @@ import { defineComponent, onMounted, reactive, toRefs } from "vue";
 import useDialog from "@/hooks/useDialog";
 import useWx from "@/hooks/useWx";
 import { getInfo } from "@/apis";
+import ky from "kyouka";
 
 export default defineComponent({
   name: "Home",
@@ -28,10 +29,9 @@ export default defineComponent({
     });
     onMounted(async () => {
       state.info = await getInfo();
-      await wx.wxShare(state.info);
-      wx.appShare(state.info);
+      await wx.shareAll(state.info);
     });
-    return { dialog, wx, ...toRefs(state) };
+    return { ky, dialog, wx, ...toRefs(state) };
   },
 });
 </script>

@@ -84,8 +84,13 @@ export default () => {
     // @ts-ignore
     window.setShareData = setShareData;
   };
+  const shareAll = async (info: any, shareUrl = "", shareTitle = "") => {
+    await wxShare(info, shareUrl, shareTitle);
+    appShare(info, shareUrl, shareTitle);
+  };
   return {
     wxShare,
     appShare,
+    shareAll,
   };
 };
