@@ -4,7 +4,12 @@ import { getWxShare } from "@/apis";
 import { isMobile } from "@/consts";
 
 export default () => {
-  const wxShare = async (info: any, shareUrl = "", shareTitle = "") => {
+  const wxShare = async (
+    info: any,
+    shareUrl = "",
+    shareTitle = "",
+    shareDesc = ""
+  ) => {
     document.title = info.title || "";
     document
       .querySelector("meta[name=description]")!
@@ -34,6 +39,7 @@ export default () => {
       wx.ready(() => {
         const link = shareUrl || shareInfo.url;
         const title = shareTitle || shareInfo.title;
+        const desc = shareDesc || shareInfo.desc;
         wx.onMenuShareTimeline({
           title,
           link,
@@ -47,7 +53,7 @@ export default () => {
         });
         wx.onMenuShareAppMessage({
           title,
-          desc: shareInfo.desc,
+          desc,
           link,
           imgUrl: shareInfo.img,
           type: "",
@@ -62,11 +68,17 @@ export default () => {
       });
     }
   };
-  const appShare = (info: any, shareUrl = "", shareTitle = "") => {
+  const appShare = (
+    info: any,
+    shareUrl = "",
+    shareTitle = "",
+    shareDesc = ""
+  ) => {
     const shareInfo = info.share_info;
-    const { desc, img } = shareInfo;
+    const { img } = shareInfo;
     const link = shareUrl || shareInfo.url;
     const title = shareTitle || shareInfo.title;
+    const desc = shareDesc || shareInfo.desc;
     const args = {
       method: "setShareData",
       share_title: title,
@@ -84,9 +96,14 @@ export default () => {
     // @ts-ignore
     window.setShareData = setShareData;
   };
-  const shareAll = async (info: any, shareUrl = "", shareTitle = "") => {
-    await wxShare(info, shareUrl, shareTitle);
-    appShare(info, shareUrl, shareTitle);
+  const shareAll = async (
+    info: any,
+    shareUrl = "",
+    shareTitle = "",
+    shareDesc = ""
+  ) => {
+    await wxShare(info, shareUrl, shareTitle, shareDesc);
+    appShare(info, shareUrl, shareTitle, shareDesc);
   };
   return {
     wxShare,
