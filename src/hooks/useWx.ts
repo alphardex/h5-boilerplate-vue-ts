@@ -2,8 +2,10 @@
 import wx from "weixin-js-sdk";
 import { getWxShare } from "@/apis";
 import { isMobile } from "@/consts";
+import { useStore } from "vuex";
 
 export default () => {
+  const store = useStore();
   const wxShare = async (
     info: any,
     shareUrl = "",
@@ -27,15 +29,21 @@ export default () => {
         "onMenuShareTimeline",
         "onMenuShareAppMessage",
       ];
-      const wxConfig = await getWxShare();
-      wx.config({
-        debug: false,
-        appId: wxConfig.appid,
-        timestamp: wxConfig.timestamp,
-        nonceStr: wxConfig.noncestr,
-        signature: wxConfig.signature,
-        jsApiList: shareInfo.apilist,
-      });
+      let config = store.state.wx.config;
+      if (!config) {
+        const wxConfig = await getWxShare();
+        const newConfig = {
+          debug: false,
+          appId: wxConfig.appid,
+          timestamp: wxConfig.timestamp,
+          nonceStr: wxConfig.noncestr,
+          signature: wxConfig.signature,
+          jsApiList: shareInfo.apilist,
+        };
+        store.commit("setConfig", newConfig);
+        config = newConfig;
+      }
+      wx.config(config);
       wx.ready(() => {
         const link = shareUrl || shareInfo.url;
         const title = shareTitle || shareInfo.title;
