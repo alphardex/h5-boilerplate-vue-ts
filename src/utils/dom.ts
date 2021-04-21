@@ -53,10 +53,16 @@ const formatDate = (timestamp: number, format = "MM月DD日HH:mm") =>
 const isElBottomVisible = (el: HTMLElement, offset = 0): boolean =>
   el.offsetHeight + el.scrollTop >= el.scrollHeight - offset;
 
+const unescapeHTML = (str: string) => {
+  const replaced = str.replace(/&#8226;/g, "•");
+  return replaced;
+};
+
 export {
   preloadAudios,
   compressAndUploadMultipleImages,
   goBack,
   formatDate,
   isElBottomVisible,
+  unescapeHTML,
 };

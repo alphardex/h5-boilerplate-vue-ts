@@ -3,6 +3,7 @@ import wx from "weixin-js-sdk";
 import { getWxShare } from "@/apis";
 import { isMobile } from "@/consts";
 import { useStore } from "vuex";
+import { unescapeHTML } from "@/utils/dom";
 
 export default () => {
   const store = useStore();
@@ -12,7 +13,7 @@ export default () => {
     shareTitle = "",
     shareDesc = ""
   ) => {
-    document.title = info.title || "";
+    document.title = unescapeHTML(info.title || "");
     document
       .querySelector("meta[name=description]")!
       .setAttribute("content", info.description || "");
@@ -46,7 +47,7 @@ export default () => {
       wx.config(config);
       wx.ready(() => {
         const link = shareUrl || shareInfo.url;
-        const title = shareTitle || shareInfo.title;
+        const title = unescapeHTML(shareTitle || shareInfo.title);
         const desc = shareDesc || shareInfo.desc;
         wx.onMenuShareTimeline({
           title,
@@ -85,7 +86,7 @@ export default () => {
     const shareInfo = info.share_info;
     const { img } = shareInfo;
     const link = shareUrl || shareInfo.url;
-    const title = shareTitle || shareInfo.title;
+    const title = unescapeHTML(shareTitle || shareInfo.title);
     const desc = shareDesc || shareInfo.desc;
     const args = {
       method: "setShareData",
