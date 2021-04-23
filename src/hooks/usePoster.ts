@@ -9,24 +9,32 @@ export default () => {
   const generateCapture = async (
     capture: HTMLElement,
     backgroundColor = "transparent",
-    scale = 2
+    scale = 2,
+    height = 0
   ) => {
-    const canvas = await html2canvas(capture, {
+    const canvasOptions: any = {
       useCORS: true,
       backgroundColor,
       scale: window.devicePixelRatio * scale,
-    });
+    };
+    if (height) {
+      canvasOptions.height = height;
+    }
+    const canvas = await html2canvas(capture);
     const dataUrl = canvas.toDataURL("image/jpg");
     return dataUrl;
   };
 
-  const generatePoster = async (sel = ".poster-capture") => {
+  const generatePoster = async (
+    sel = ".poster-capture",
+    bgColor = "transparent"
+  ) => {
     posterUrl.value = "";
     window.scrollTo(0, 0);
     isGenerating.value = true;
     await ky.sleep(200);
     const poster = document.querySelector(sel) as HTMLElement;
-    const dataUrl = await generateCapture(poster);
+    const dataUrl = await generateCapture(poster, bgColor, 2, 880);
     posterUrl.value = dataUrl;
     isGenerating.value = false;
   };
