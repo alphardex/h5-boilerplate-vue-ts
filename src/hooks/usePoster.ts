@@ -34,7 +34,7 @@ export default () => {
     isGenerating.value = true;
     await ky.sleep(200);
     const poster = document.querySelector(sel) as HTMLElement;
-    const dataUrl = await generateCapture(poster, bgColor, 2, 880);
+    const dataUrl = await generateCapture(poster, bgColor, 2, ky.vw2px(210));
     posterUrl.value = dataUrl;
     isGenerating.value = false;
   };
