@@ -2,6 +2,7 @@ import router from "@/router";
 import ky from "kyouka";
 import { compressImage } from "./image";
 import dayjs from "dayjs";
+import imagesLoaded from "imagesloaded";
 
 dayjs.locale("zh-cn");
 
@@ -58,6 +59,12 @@ const unescapeHTML = (str: string) => {
   return replaced;
 };
 
+const preloadImages = (sel = "img") => {
+  return new Promise((resolve) => {
+    imagesLoaded(sel, { background: true }, resolve);
+  });
+};
+
 export {
   preloadAudios,
   compressAndUploadMultipleImages,
@@ -65,4 +72,5 @@ export {
   formatDate,
   isElBottomVisible,
   unescapeHTML,
+  preloadImages,
 };
