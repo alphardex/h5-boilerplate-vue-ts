@@ -9,9 +9,7 @@ export default () => {
   const store = useStore();
   const wxShare = async (
     info: any,
-    shareUrl = "",
-    shareTitle = "",
-    shareDesc = ""
+    { shareUrl = "", shareTitle = "", shareDesc = "" } = {}
   ) => {
     document.title = unescapeHTML(info.title || "");
     document
@@ -59,6 +57,9 @@ export default () => {
           cancel() {
             shareInfo.callback && shareInfo.callback();
           },
+          fail(res: any) {
+            console.log(res);
+          },
         });
         wx.onMenuShareAppMessage({
           title,
@@ -73,15 +74,19 @@ export default () => {
           cancel() {
             shareInfo.callback && shareInfo.callback();
           },
+          fail(res: any) {
+            console.log(res);
+          },
         });
+      });
+      wx.error((res: any) => {
+        console.log(res);
       });
     }
   };
   const appShare = (
     info: any,
-    shareUrl = "",
-    shareTitle = "",
-    shareDesc = ""
+    { shareUrl = "", shareTitle = "", shareDesc = "" } = {}
   ) => {
     const shareInfo = info.share_info;
     const { img } = shareInfo;
@@ -107,12 +112,10 @@ export default () => {
   };
   const shareAll = async (
     info: any,
-    shareUrl = "",
-    shareTitle = "",
-    shareDesc = ""
+    { shareUrl = "", shareTitle = "", shareDesc = "" } = {}
   ) => {
-    await wxShare(info, shareUrl, shareTitle, shareDesc);
-    appShare(info, shareUrl, shareTitle, shareDesc);
+    await wxShare(info, { shareUrl, shareTitle, shareDesc });
+    appShare(info, { shareUrl, shareTitle, shareDesc });
   };
   return {
     wxShare,
