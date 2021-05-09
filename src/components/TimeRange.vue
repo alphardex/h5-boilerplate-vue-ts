@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <span>活动时间：</span>
-    <span>{{ timeRangeText }}</span>
-  </div>
+  <span>{{ timeRangeText }}</span>
 </template>
 
 <script lang="ts">
@@ -12,18 +9,18 @@ import { computed, defineComponent } from "vue";
 export default defineComponent({
   name: "TimeRange",
   props: {
-    info: {
-      type: Object,
-      default: null,
+    startDate: {
+      type: Number,
+      default: 0,
+    },
+    endDate: {
+      type: Number,
+      default: 0,
     },
   },
   setup(props) {
     const timeRangeText = computed(() => {
-      return props.info
-        ? `${formatDate(props.info.startdate)}-${formatDate(
-            props.info.enddate
-          )}`
-        : "";
+      return `${formatDate(props.startDate)}-${formatDate(props.endDate)}`;
     });
     return { timeRangeText };
   },
