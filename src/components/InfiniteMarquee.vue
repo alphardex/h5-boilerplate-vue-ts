@@ -2,6 +2,7 @@
   <div class="max-h-30 overflow-hidden pointer-events-none">
     <div
       class="marquee flex flex-col space-y-1"
+      :class="{ paused: isPaused }"
       :style="`--total-count: ${doubledAvatarList.length};`"
     >
       <div
@@ -30,19 +31,28 @@ export default defineComponent({
       type: Number,
       default: 12,
     },
+    enableLength: {
+      type: Number,
+      default: 0,
+    },
   },
   setup(props) {
+    const isPaused = computed(() => {
+      return props.avatarList
+        ? props.avatarList.length <= props.enableLength
+        : true;
+    });
     const doubledAvatarList = computed(() => {
       const randomOrderList = ky.sampleSize(props.avatarList!, props.count);
       const doubledList = [...randomOrderList, ...randomOrderList];
-      return doubledList;
+      return isPaused.value ? props.avatarList : doubledList;
     });
-    return { doubledAvatarList };
+    return { isPaused, doubledAvatarList };
   },
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .marquee {
   --basic-height: 5.5vw;
   --basic-duration: 1s;
@@ -50,6 +60,10 @@ export default defineComponent({
   --total-height: calc(var(--basic-height) * var(--total-count) * -1);
 
   animation: marquee-scroll-down var(--total-duration) linear infinite;
+
+  &.paused {
+    animation: none !important;
+  }
 }
 
 @keyframes marquee-scroll-down {
