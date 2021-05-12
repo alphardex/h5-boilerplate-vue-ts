@@ -6,6 +6,7 @@ const publicKey = ``;
 const isDevMode = process.env.NODE_ENV === "development";
 const isMobile = ky.detectDeviceType() === "Mobile";
 const isWeixin = /micromessenger/i.test(navigator.userAgent);
+const isWeapp = /miniProgram/i.test(navigator.userAgent);
 
 const statusCode = {
   UNAUTHORIZED: 300,
@@ -45,6 +46,7 @@ export {
   isDevMode,
   isMobile,
   isWeixin,
+  isWeapp,
   API,
   navItems,
   statusCode,
