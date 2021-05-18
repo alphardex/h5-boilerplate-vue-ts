@@ -48,6 +48,12 @@ body {
   }
 }
 
+@mixin iphone-x-below-layout {
+  @media screen and (max-height: 723px) {
+    @content;
+  }
+}
+
 // reset
 
 * {
