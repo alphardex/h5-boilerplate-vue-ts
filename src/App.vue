@@ -6,7 +6,7 @@
 import "@alphardex/aqua.css/dist/aqua.sp.min.css";
 import { defineComponent } from "vue";
 import MockServer from "@/mock/index";
-import VConsole from "vconsole";
+// import VConsole from "vconsole";
 import { isDevMode } from "./consts";
 import ky from "kyouka";
 
@@ -17,7 +17,7 @@ export default defineComponent({
       const mockServer = new MockServer();
       mockServer.start();
     }
-    new VConsole();
+    // new VConsole();
   },
 });
 </script>
