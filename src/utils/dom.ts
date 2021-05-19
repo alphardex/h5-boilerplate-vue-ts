@@ -65,6 +65,8 @@ const preloadImages = (sel = "img") => {
   });
 };
 
+const reload = () => location.reload();
+
 export {
   preloadAudios,
   compressAndUploadMultipleImages,
@@ -73,4 +75,5 @@ export {
   isElBottomVisible,
   unescapeHTML,
   preloadImages,
+  reload,
 };
