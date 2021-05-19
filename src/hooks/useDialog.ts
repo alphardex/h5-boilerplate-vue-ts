@@ -23,6 +23,13 @@ export default () => {
     fn();
   };
 
+  const clickCloseDialog = () => {
+    if (!isBackdropClosable.value) {
+      return;
+    }
+    closeAllDialog();
+  };
+
   const openShareTip = openDialog(() => {
     showShareTip.value = true;
   });
@@ -43,6 +50,7 @@ export default () => {
     showBackdrop,
     isBackdropClosable,
     closeAllDialog,
+    clickCloseDialog,
     showShareTip,
     openShareTip,
     showFollowDialog,
