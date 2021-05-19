@@ -1,5 +1,9 @@
 # h5-boilerplate-vue-ts
 
+常熟 cdn：http://aimg.cs090.com/
+
+太仓 cdn：http://aimg.tc090.net/
+
 目录结构：
 
 - apis: 各种接口请求函数
