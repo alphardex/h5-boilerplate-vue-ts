@@ -67,6 +67,9 @@ const preloadImages = (sel = "img") => {
 
 const reload = () => location.reload();
 
+const reverseObject = (obj: any) =>
+  Object.fromEntries(Object.entries(obj).reverse());
+
 export {
   preloadAudios,
   compressAndUploadMultipleImages,
@@ -76,4 +79,5 @@ export {
   unescapeHTML,
   preloadImages,
   reload,
+  reverseObject,
 };
