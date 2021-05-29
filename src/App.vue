@@ -112,6 +112,10 @@ $colors: "red", "orange", "yellow", "green", "blue", "purple", "brown", "grey",
 
 // common
 
+.dialog {
+  animation: fade-in 0.6s both;
+}
+
 .music {
   position: fixed;
   z-index: 1000;

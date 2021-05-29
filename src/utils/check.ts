@@ -38,4 +38,16 @@ const checkAgree = (agree: boolean) => {
   return true;
 };
 
-export { checkDate, checkNameAndTel, checkAgree };
+const checkIdcard = (idcard: string) => {
+  if (
+    !/(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/.test(
+      idcard
+    )
+  ) {
+    Alert.fire("身份证号的格式不对");
+    return false;
+  }
+  return true;
+};
+
+export { checkDate, checkNameAndTel, checkAgree, checkIdcard };
