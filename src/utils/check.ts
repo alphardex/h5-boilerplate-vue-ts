@@ -1,5 +1,6 @@
 import { Alert } from "@/utils/alert";
 import ky from "kyouka";
+import { isIdcard } from "./dom";
 
 const checkDate = (beginDate: Date, endDate: Date) => {
   const now = new Date();
@@ -14,6 +15,14 @@ const checkDate = (beginDate: Date, endDate: Date) => {
   return true;
 };
 
+const checkTel = (tel: string) => {
+  if (!ky.isPhoneNumber(tel)) {
+    Alert.fire("电话号码的格式不对");
+    return false;
+  }
+  return true;
+};
+
 const checkNameAndTel = (name: string, tel: string) => {
   if (!name) {
     Alert.fire("请输入姓名");
@@ -23,8 +32,15 @@ const checkNameAndTel = (name: string, tel: string) => {
     Alert.fire("请输入电话");
     return false;
   }
-  if (!ky.isPhoneNumber(tel)) {
-    Alert.fire("电话号码的格式不对");
+  if (!checkTel(tel)) {
+    return false;
+  }
+  return true;
+};
+
+const checkIdcard = (idcard: string) => {
+  if (!isIdcard(idcard)) {
+    Alert.fire("身份证号的格式不对");
     return false;
   }
   return true;
@@ -38,16 +54,4 @@ const checkAgree = (agree: boolean) => {
   return true;
 };
 
-const checkIdcard = (idcard: string) => {
-  if (
-    !/(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/.test(
-      idcard
-    )
-  ) {
-    Alert.fire("身份证号的格式不对");
-    return false;
-  }
-  return true;
-};
-
-export { checkDate, checkNameAndTel, checkAgree, checkIdcard };
+export { checkDate, checkTel, checkNameAndTel, checkIdcard, checkAgree };

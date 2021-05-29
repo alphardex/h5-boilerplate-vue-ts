@@ -48,7 +48,7 @@ const goBack = () => {
   router.go(-1);
 };
 
-const formatDate = (timestamp: number, format = "M月DD日") =>
+const formatDate = (timestamp: number, format = "M月DD日HH:mm") =>
   dayjs.unix(Number(timestamp)).format(format);
 
 const isElBottomVisible = (el: HTMLElement, offset = 0): boolean =>
@@ -70,6 +70,11 @@ const reload = () => location.reload();
 const reverseObject = (obj: any) =>
   Object.fromEntries(Object.entries(obj).reverse());
 
+const isIdcard = (str: string) =>
+  /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/.test(
+    str
+  );
+
 export {
   preloadAudios,
   compressAndUploadMultipleImages,
@@ -80,4 +85,5 @@ export {
   preloadImages,
   reload,
   reverseObject,
+  isIdcard,
 };
