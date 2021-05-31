@@ -16,6 +16,10 @@ const checkDate = (beginDate: Date, endDate: Date) => {
 };
 
 const checkTel = (tel: string) => {
+  if (!tel) {
+    Alert.fire("请输入电话");
+    return false;
+  }
   if (!ky.isPhoneNumber(tel)) {
     Alert.fire("电话号码的格式不对");
     return false;
@@ -26,10 +30,6 @@ const checkTel = (tel: string) => {
 const checkNameAndTel = (name: string, tel: string) => {
   if (!name) {
     Alert.fire("请输入姓名");
-    return false;
-  }
-  if (!tel) {
-    Alert.fire("请输入电话");
     return false;
   }
   if (!checkTel(tel)) {
