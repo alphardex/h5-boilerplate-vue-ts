@@ -10,17 +10,19 @@ export default defineComponent({
   name: "TimeRange",
   props: {
     startDate: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: "0",
     },
     endDate: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: "0",
     },
   },
   setup(props) {
     const timeRangeText = computed(() => {
-      return `${formatDate(props.startDate)}-${formatDate(props.endDate)}`;
+      return `${formatDate(Number(props.startDate))}-${formatDate(
+        Number(props.endDate)
+      )}`;
     });
     return { timeRangeText };
   },

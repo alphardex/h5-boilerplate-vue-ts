@@ -92,7 +92,7 @@ p {
 
 // utils
 
-$colors: "red", "orange", "yellow", "green", "blue", "purple", "brown", "grey",
+$colors: "red", "orange", "yellow", "green", "blue", "purple", "brown", "black",
   "white";
 @each $c in $colors {
   @for $i from 1 through 8 {
