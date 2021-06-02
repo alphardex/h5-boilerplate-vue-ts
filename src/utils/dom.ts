@@ -75,6 +75,10 @@ const isIdcard = (str: string) =>
     str
   );
 
+const maskName = (name: string) => name.replace(/(?<=.)./g, "*");
+
+const maskTel = (tel: string) => tel.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
+
 export {
   preloadAudios,
   compressAndUploadMultipleImages,
@@ -86,4 +90,6 @@ export {
   reload,
   reverseObject,
   isIdcard,
+  maskName,
+  maskTel,
 };
