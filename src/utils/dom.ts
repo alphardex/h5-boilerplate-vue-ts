@@ -75,9 +75,21 @@ const isIdcard = (str: string) =>
     str
   );
 
-const maskName = (name: string) => name.replace(/(?<=.)./g, "*");
+const maskName = (name: string) => {
+  let newStr;
+  if (name.length === 2) {
+    newStr = name.substr(0, 1) + "*";
+  } else {
+    let char = "";
+    for (let i = 0, len = name.length - 1; i < len; i++) {
+      char += "*";
+    }
+    newStr = name.substr(0, 1) + char;
+  }
+  return newStr;
+};
 
-const maskTel = (tel: string) => tel.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
+const maskTel = (tel: any) => tel.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
 
 export {
   preloadAudios,
