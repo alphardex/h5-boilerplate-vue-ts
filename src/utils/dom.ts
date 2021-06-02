@@ -89,7 +89,7 @@ const maskName = (name: string) => {
   return newStr;
 };
 
-const maskTel = (tel: any) => tel.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
+const maskTel = (tel: string) => tel.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
 
 export {
   preloadAudios,
