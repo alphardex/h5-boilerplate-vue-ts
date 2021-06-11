@@ -39,6 +39,10 @@ const checkNameAndTel = (name: string, tel: string) => {
 };
 
 const checkIdcard = (idcard: string) => {
+  if (!idcard) {
+    Alert.fire("请输入身份证");
+    return false;
+  }
   if (!isIdcard(idcard)) {
     Alert.fire("身份证号的格式不对");
     return false;

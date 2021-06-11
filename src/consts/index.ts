@@ -28,7 +28,11 @@ Object.entries(API).forEach(([key, value]) => {
 
 console.log(JSON.stringify(API));
 
-const navItems = [{ to: { name: "Home" }, text: "首页" }];
+const navItems = [
+  { to: { name: "Home" }, text: "首页" },
+  { to: { name: "Rule" }, text: "活动规则" },
+  { to: { name: "Prize" }, text: "我的奖品" },
+];
 
 const masonryConfig = {
   sel: ".masonry",
@@ -39,6 +43,8 @@ const masonryConfig = {
     gutter: ky.vw2px(3),
   },
 };
+
+const needSubscribe = false;
 
 export {
   activityID,
@@ -51,4 +57,5 @@ export {
   navItems,
   statusCode,
   masonryConfig,
+  needSubscribe,
 };
