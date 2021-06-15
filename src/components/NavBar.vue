@@ -8,6 +8,7 @@
       >{{ item.text }}</router-link
     >
   </nav>
+  <div class="h-16"></div>
 </template>
 
 <script lang="ts">
