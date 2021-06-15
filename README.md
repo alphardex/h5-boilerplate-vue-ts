@@ -1,4 +1,4 @@
-# h5-boilerplate-vue-ts
+# H5 项目
 
 常熟 cdn：http://aimg.cs090.com/
 
@@ -10,9 +10,11 @@
 - assets: 图片素材
 - components: 组件
 - consts: 常量，如配置
+- directives: 自定义指令，如横屏
 - hooks: 钩子，即可复用的函数
 - mock: 模拟请求数据
 - router: 路由
+- store: 全局变量
 - types: 类型
 - utils: 工具，如提示、请求等
 - views: 视图
@@ -75,7 +77,3 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## Others
-
-除了自己公司外的项目都要加上技术支持
