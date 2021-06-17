@@ -48,7 +48,7 @@ const goBack = () => {
   router.go(-1);
 };
 
-const formatDate = (timestamp: number, format = "M月DD日HH:mm") =>
+const formatDate = (timestamp: number, format = "M月DD日") =>
   dayjs.unix(Number(timestamp)).format(format);
 
 const isElBottomVisible = (el: HTMLElement, offset = 0): boolean =>
