@@ -1,7 +1,8 @@
+import { decrypt, encrypt } from "@/utils/crypt";
 import ky from "kyouka";
 
 const activityID = "";
-const publicKey = ``;
+const publicKey = decrypt("");
 
 const isDevMode = process.env.NODE_ENV === "development";
 const isMobile = ky.detectDeviceType() === "Mobile";
