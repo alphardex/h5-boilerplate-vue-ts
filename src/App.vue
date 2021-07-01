@@ -54,6 +54,18 @@ body {
   }
 }
 
+.sp-only {
+  @include pc-layout {
+    display: none;
+  }
+}
+
+.pc-only {
+  @include sp-layout {
+    display: none;
+  }
+}
+
 // reset
 
 * {
