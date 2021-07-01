@@ -128,6 +128,23 @@ $colors: "red", "orange", "yellow", "green", "blue", "purple", "brown", "black",
   animation: fade-in 0.6s both;
 }
 
+select.form-control {
+  --select-active-color: black;
+  --select-inactive-color: var(--secondary-color);
+
+  color: var(--select-inactive-color);
+
+  option {
+    &:not(:first-of-type) {
+      color: var(--select-active-color);
+    }
+  }
+
+  &:required:valid {
+    color: var(--select-active-color);
+  }
+}
+
 .music {
   position: fixed;
   z-index: 1000;
