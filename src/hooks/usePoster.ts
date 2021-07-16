@@ -20,7 +20,7 @@ export default () => {
     if (height) {
       canvasOptions.height = height;
     }
-    const canvas = await html2canvas(capture);
+    const canvas = await html2canvas(capture, canvasOptions);
     const dataUrl = canvas.toDataURL("image/jpg");
     return dataUrl;
   };
